@@ -1,0 +1,750 @@
+\chapter{L'Aritmetica di Peano e i Sequenti}
+		
+		Alla matematica si è sempre riservato un posto indubbiamente speciale nell'universo delle cose. Tuttavia, tra le innumerevoli idee che la accompagnano, una si distingue per la sua incessante ricorrenza: il mito, in parte imputabile alla quotidianità, secondo cui tutto ciò che è matematico debba inevitabilmente essere vero. L'essenza stessa di questa disciplina pare essere ciò che, più o meno implicitamente, fornisce una misura di certezza per tutte le altre scienze. E non è un caso che uno dei sinonimi più comuni di \virg{è certo} sia \virg{è matematico}, a volerne sottolineare l'obiettività in contrapposizione al soggettivo, che non pare godere della stessa dignità ontologica.
+		
+		Ma la realtà è ben più complessa di così: ad esempio esistono svariati teoremi la cui dimostrabilità si basa sull'accettazione, del tutto soggettiva, dell'assioma della scelta. Eppure, nessuno si sognerebbe di negare a questi lo status di teorema matematico. Ed è proprio questo soggettivismo a costituire, al contempo, sia un punto di forza che una possibile debolezza per la matematica stessa: mentre apre la strada alle innumerevoli possibilità della creatività umana (e non?), ci pone davanti ad uno spaventoso quesito. % La matematica è un \emph{gioco} in cui ci interessa se le deduzioni siano, date determinate premesse, corrette. Ma 
+		Se addirittura gli assiomi, le premesse di ogni deduzione, sono soggettivi e quindi scelti a tavolino da uno o più individui di cui non possiamo escludere la fallibilità, come garantiamo la sensatezza di quel che viene dopo? Cosa succederebbe se, date delle premesse che ci appaiono ragionevoli e su cui abbiamo basato gran parte dei nostri sforzi, si potesse dimostrare \emph{correttamente} sia un certo enunciato che la sua negazione?
+		
+		Potremmo ritenere \virg{matematica} tutto ciò? Per il principio logico dell'\emph{ex falso}, ogni pensabile affermazione deriverebbe in modo corretto dalle suddette premesse e, di fatto, considerati veri gli assiomi, ogni singola affermazione esprimibile sarebbe da considerarsi vera. Che matematica si potrebbe fare se $2$ fosse al contempo sia pari che dispari? E se $0$ e $1$ fossero, simultaneamente, lo stesso numero e due numeri diversi?
+		
+		Queste riflessioni sono le radici di una storia più e più volte raccontata: quella dei fondamenti della matematica, che ha accompagnato buona parte del $'900$. La sua fama è dovuta agli spiazzanti risultati a cui hanno condotto le semplici domande da cui parte. Delineiamone brevemente le scene.
+		
+		Gli anni $20$ e $30$ del $'900$ sono mossi dal noto \emph{Programma di Hilbert}, in parte giustificato dal \emph{paradosso di Russell}, scoperto non molto tempo prima, che evidenziava la contraddittorietà della teoria elementare degli insiemi. L'idea era quella di assicurare alla matematica delle solide basi da cui partire: si voleva giustificare la sensatezza della matematica infinitaria usando solo strumenti finitari, un concetto mai totalmente chiarito da Hilbert, la cui sicurezza non era in discussione.
+		Un altro tassello ben noto di questa storia è il contributo, per certi versi distruttivo, di \Godel: l'obiettivo di Hilbert era impossibile da raggiungere. Questo perché se la matematica infinitaria è un'estensione propria della matematica finitaria e quest'ultima contiene sufficienti, in realtà minime, capacità aritmetiche, i suoi \emph{teoremi di incompletezza} garantiscono l'impossibilità di esibire una dimostrazione finitaria di consistenza della matematica infinitaria che preservi la consistenza della matematica finitaria.
+		
+		I dettagli sono un po' più complicati, ma l'idea di fondo è che \Godel, ricorrendo ad una raffinata tecnica che associa degli specifici numeri a determinate affermazioni, è riuscito a costruire un esempio di affermazione non dimostrabile in una teoria $\teoriaS$ che sia l'aritmetica elementare od una sua qualsiasi estensione stretta. Questa affermazione è $D_{\teoriaS}$ che, in quella teoria, è equivalente a $\nn$Dim$_{\teoriaS}(D_{\teoriaS})$, in altre parole un'affermazione che dice di se stessa di non essere dimostrabile in $\teoriaS$, se si suppone questa teoria consistente.
+		
+		Quello che abbiamo appena discusso si traduce con l'implicazione Con$_{\teoriaS}\allora\nn$Dim$_{\teoriaS}(D_{\teoriaS})$, ma, per via della costruzione fatta da \Godel, vale anche l'implicazione: $\nn$Dim$_{\teoriaS}(D_{\teoriaS})\allora D_{\teoriaS}$. Quindi, per transitività, deduciamo: Con$_{\teoriaS}\allora D_{\teoriaS}$. Quest'ultima implicazione ci dice che se, per assurdo, fosse possibile dimostrare la consistenza della teoria dal suo interno, sarebbe anche possibile dimostrare $D_{\teoriaS}$, che abbiamo detto non essere dimostrabile, dando così luogo ad una contraddizione.
+		
+		\begin{description}
+			\item[Teorema] Se $\teoriaS$ è consistente, non è possibile provarne la consistenza dall'interno.
+		\end{description}
+		
+		Com'è evidente, questi teoremi non solo vanificano il Programma di Hilbert, ma pongono delle limitazioni grandissime a qualsiasi ricerca che voglia in qualche altro modo garantire la solidità delle basi della matematica. Bisognava quindi cercare una soluzione altrove, percorrendo una strada che i teoremi di \Godel\ non avevano interrotto.
+
+\section{Formalizzazione della Teoria}
+		La teoria elementare dei numeri ci viene insegnata fin da bambini e molto velocemente impariamo a fidarci di essa. Questa premessa, già da sola, è una motivazione più che sufficiente per scegliere di dimostrare la consistenza di questa teoria.
+		
+		L'Aritmetica di Peano è la più nota formalizzazione di questa teoria e consiste in un linguaggio specifico $\mathscr{L}_{\text{PA}}$ composto da:
+	\begin{itemize}
+		\item un termine numerico $0$;
+		\item una funzione unaria \textit{successore}, $\text{S}x$ che lega un \textit{numero} al suo successivo;
+		\item due funzioni binarie, operazioni, individuate dai simboli $+$ e $\times$ (le usuali somma e prodotto);
+		\item una relazione di uguaglianza definita col simbolo $=$;
+		\item un insieme arbitrario di variabili $x, y,\ldots$ 
+	\end{itemize}
+		A cui poi si aggiungono i simboli tipici della logica che consideriamo irrinunciabili nella formalizzazione di una teoria che voglia contenere una qualche forma di inferenza.
+		Oltre ad un linguaggio, una teoria necessita anche di assiomi. Per l'Aritmetica di Peano sono:
+		\begin{itemize}
+			\item[PA1] \quad $ \text{S}x = \text{S}y \allora x=y $
+			\item[PA2] \quad $\nn (\text{S}x=0)$
+			\item[PA3] \quad $x+0=x$
+			\item[PA4] \quad $x+\text{S}y=\text{S}(x+y)$
+			\item[PA5] \quad $x\times0=0$
+			\item[PA6] \quad $x\times \text{S}y=(x\times y)+x$
+		\end{itemize}
+		unitamente ad uno schema di assiomi:
+		\begin{itemize}
+			\item[PA7] \quad $[\phi(0) \ee \perogni x(\phi(x)\allora \phi(\text{S}x))] \allora \perogni x\phi(x)$ \quad dove $\phi(x)$ è una formula in $\mathscr{L}_{\text{PA}}$
+		\end{itemize}
+		Per brevità di scrittura, l'applicazione della funzione successore ad una certa $x$ si può anche indicare con $x'$ e, in generale, ogni $'$ accanto ad un numero o ad una variabile indica un'applicazione della funzione \emph{successore}.
+	\begin{description}
+		\item[e.g.:] \quad $\text{S}(\text{S}(\text{S}(0))) = 0''' = 3$
+	\end{description}
+		Ogni $n \in \N$ sarà quindi uno $0$ seguito da un certo numero di $'$ e i \emph{termini} saranno quindi tutti di questa forma (\emph{termini numerici}) oppure espressi con una variabile libera \virg{$a$} anch'essa eventualmente seguita da un certo numero di $'$  (\emph{termini variabili}).
+		
+		Come accennavamo in precedenza, in una teoria, per costruire affermazioni e dimostrazioni è anche necessario adottare il linguaggio della logica. Per fare ciò partiamo definendo cosa sia una \emph{formula}:
+		 
+	\begin{defin}[Formula Atomica]
+		Sia $R$ un predicato dotato di $i$ ($i\geq1$) entrate e $t_{1}, \ldots, t_{i}$ termini, allora $R(t_{1}, \ldots, t_{i})$ è detta \emph{formula atomica}. 
+	\end{defin}
+		L'unica richiesta avanzata per i predicati è che questi siano sempre \emph{decidibili}, i.e. per ogni naturale posso stabilire se il dato predicato vale per quel numero.
+	\begin{description}
+		\item[e.g.:] Una formula atomica con una sola entrata è $P(n)$ che afferma \virg{$n$ è pari}. Una formula atomica con più entrate è, per esempio, $M(a,m)$ che dice di un numero $m$ di essere multiplo del numero $a$. Si noti che entrambi gli esempi sono decidibili: è facile stabilire se siano vere $P(4)$, $P(7)$, $M(3,11)$ e $M(5,25)$ note le definizioni di \virg{numero pari} e di \virg{multiplo}. Questi esempi hanno solo scopo illustrativo.
+	\end{description}
+	
+	\begin{defin}[Formula]
+		Dal concetto di formula atomica si definisce ricorsivamente il concetto di \emph{formula} e di \emph{connettivo terminale} come segue:			
+		\begin{enumerate}
+			\item Ogni formula atomica è una formula e non ha connettivo terminale;			
+			\item Se $A$ e $B$ sono due formule allora $(\nn A), \; (A \ee B), \; (A \oo B) \; e \; (A \allora B)$ sono formule e il loro connettivo terminale è $\nn, \; \ee, \; \oo, \;$ e $\allora$ rispettivamente;
+			\item Se $A$ è una formula, $a$ una variabile libera e $x$ una variabile vincolata che non compare\footnote{La richiesta che $x$ non compaia in $A$ preclude la definizione di stringhe come $\esiste x [C(x) \allora \perogni xC(x)]$ in cui un quantificatore più esterno quantifica anche per il \virg{soggetto} di un quantificatore più interno, creando una confusione simile a quella che si ha scrivendo $\int_0^x x\text{d}x$. Questo comunque non restringe la classe delle possibili formule.} in $A$, allora $\perogni x \hat{A}$ e $\esiste x \hat{A}$ sono formule dove con $\hat{A}$ si intende la formula $A$ in cui ogni occorrenza di $a$ è sostituita dalla $x$. I loro connettivi terminali sono $\perogni$ ed $\esiste$ rispettivamente.
+			\item Soltanto ciò che è ottenuto dai punti precedenti è una formula.
+		\end{enumerate}
+	\end{defin}
+		Il \emph{connettivo terminale} è quindi, intuitivamente, l'ultimo connettivo aggiunto durante la costruzione della formula.
+		Inoltre: 
+	\begin{defin}[Grado di una formula]
+		Il \emph{grado} di una formula è il numero di connettivi che contiene. Le formule atomiche hanno grado $0$.
+	\end{defin}
+	\begin{description}
+		\item[e.g.:] La formula $\perogni n[(2|n) \oo \nn(2|n)]$ ha grado $3$ perché contiene $3$ connettivi ($\perogni$, $\oo$ e $\nn$) e il suo connettivo terminale è il $\perogni$. \\ La formula che compare in PA7 ha grado $5$ perché contiene $5$ connettivi: due $\perogni$, un $\ee$ e due $\allora$. Il suo connettivo terminale è la seconda $\allora$. \\ Riflettendoci, il grado di una formula indica anche quanti \emph{passaggi} sono necessari a crearla partendo da una o più istanze di una o più formule atomiche. Il concetto di connettivo terminale fornisce una traccia di questa costruzione.
+	\end{description}
+\section{Calcolo dei Sequenti}
+		L'ultimo tassello necessario alla formalizzazione di una teoria è la definizione di un metodo con cui sia possibile inferire nuove formule a partire dagli assiomi o da altre formule già inferite in precedenza. Questo è di notevole importanza anche perché attualmente, pensandoci bene, abbiamo solo una definizione ricorsiva di formula che non ci chiarisce \emph{come} inserire i nuovi connettivi. Oltre a questo, vorremmo anche capire come formule già costruite si leghino tra loro a formare deduzioni lecite. 
+		
+		Normalmente tutta questa parte della teoria è implicita nell'uso quotidiano e sono le comuni regole di dimostrazione. Tuttavia, se il nostro scopo è quello di indagare l'affidabilità dei meccanismi che regolano le dimostrazioni, è chiaro che non possiamo esimerci dall'esplicitare anche le basi logiche su cui la teoria matematica si fonda e lo facciamo partendo dai soggetti delle regole di inferenza. Il particolare sistema deduttivo che vogliamo delineare differisce da altri più noti, come la \textit{Deduzione Naturale}, le cui regole si applicano direttamente alle formule logiche: nel nostro sistema le regole  si applicano ad \virg{asserzioni di derivabilità} dette sequenti.
+	\begin{defin}[Sequente]
+		Un \emph{sequente} è un'espressione della forma:
+	\begin{equation} 
+		\gothU_{1},\, \gothU_{2},\, \ldots, \, \gothU_{\mu} \seq \, \gothB_{1},\, \gothB_{2},\, \ldots, \, \gothB_{\nu}. \nonumber
+	\end{equation}
+		dove arbitrarie formule sostituiscono $\gothU_{1},\, \gothU_{2},\, \ldots, \, \gothU_{\mu}$ e $\gothB_{1},\, \gothB_{2},\, \ldots, \, \gothB_{\nu}$. Le $\gothU_{i}$ sono dette \emph{formule antecedenti} mentre le $\gothB_{j}$ sono dette \emph{formule succedenti}.
+	\end{defin}
+	\begin{description}
+		\item[e.g.:] Esempi di sequente sono: 
+		\begin{itemize}
+			\item $P(x)\seq P(x)$ per un generico predicato $P$;
+			\item $P(0),\, P(0'),\, P(0'') \seq P(0''''),\, P(0)$;
+			\item $\ \seq A(x,y) \oo \nn A(x,y)$;
+			\item $\ \seq A(x,y),\, \nn A(x,y)$
+			\item $P(0')\ee\nn P(0')\seq\ $.
+		\end{itemize}
+	\end{description}
+		Possiamo identificare le formule antecedenti come \virg{premesse} o \virg{condizioni} e le succedenti come \virg{conseguenze} o \virg{deduzioni}. Intuitivamente, un sequente $\gothU_{1},\ldots,\, \gothU_{n} \seq \, \gothB_{1},\ldots,\,\gothB_{m}$ (con $n,m\ge0$) può essere interpretato come un'implicazione logica del tipo: se $\gothU_{1} \ee \ldots \ee \gothU_{n}$ allora $\gothB_{1} \oo \ldots \oo \gothB_{m}$ ed afferma, o almeno ipotizza\footnote{Non essendoci vincoli di verità nella definizione, non possiamo escludere a priori questa precisazione.}, la derivabilità delle formule succedenti a partire da quelle antecedenti.
+	\begin{description}
+		\item[e.g.:] Leggiamo in quest'ottica gli esempi appena proposti:
+		\begin{itemize}
+			\item da $P(x)$ posso dedurre $P(x)$;
+			\item dati $P(0)$, $P(0')$ e $P(0'')$, posso dedurre $P(0'''')$ e anche $P(0)$;
+			\item è possibile dedurre $A(x,y) \oo \nn A(x,y)$ (non ha bisogno di alcuna premessa);
+			\item analogamente, è possibile dedurre $A(x,y)$ oppure $\nn A(x,y)$;
+			\item da $P(0')\ee\nn P(0')$ non deduco nulla (la formula non porta ad alcun succedente).
+		\end{itemize}
+	\end{description}
+		Come intuiamo dagli esempi, un sequente in cui $n=0$ implica che è possibile dedurre $\gothB_{1} \oo \ldots \oo \gothB_{m}$ indipendentemente dalle premessa, o senza alcuna \virg{condizione}. E quindi è deducibile almeno una delle $\gothB_{i}$. Similmente, il sequente con $m=0$ implica che dalle premesse $\gothU_{1}$, \ldots , $\gothU_{n}$ non è possibile arrivare ad alcuna conclusione, o che conducono ad una contraddizione.
+		In altre parole, nel primo caso i succedenti non dipendono da alcuna premessa, mentre nel secondo caso gli antecedenti conducono a nessun succedente.
+		
+		Qui il concetto di \emph{verità}, essendo fuorviante, va usato con grande attenzione: non proveremo perciò a darne una definizione rigorosa e, se possibile, cercheremo di evitarlo quando non strettamente necessario.
+		
+		Nel caso in cui sia $n$ sia $m$ sono uguali a $0$ otteniamo $\emptyseq$, chiamato \emph{sequente vuoto}, che, stando a quando abbiamo detto, conduce ad una contraddizione. Infatti, l'assenza di antecedenti garantisce che almeno una delle $\gothB_{i}$ sia dimostrabile, ma questo è ovviamente impossibile non essendoci alcuna succedente.
+		Per questo motivo il sequente vuoto ha un ruolo di primaria importanza nella definizione della consistenza di una teoria e, quindi, nella sua dimostrazione. Chiariremo i dettagli all'inizio del capitolo $2$.
+		
+		Per alleggerire la scrittura di un sequente, adottiamo lettere greche maiuscole eventualmente con dei pedici ($\Gamma, \Delta, \Pi, \Gamma_{0}, \Gamma_{1}, \ldots$) per denotare collezioni finite, anche vuote, di formule. In questo senso un sequente può essere rappresentato come:
+	\begin{equation}
+		\Gamma \seq \Delta \nonumber
+	\end{equation}
+		Se i sequenti sono da intendersi come uno strumento per formalizzare le dimostrazioni, è lecito chiedersi da dove partano queste ultime: 
+	\begin{defin}[Sequenti base]
+		I sequenti base sono i punti di partenza per le dimostrazioni e distinguiamo due tipologie di sequenti base: i \emph{sequenti base logici} e i \emph{sequenti base matematici}. 
+		\begin{description}
+			\item[Sequente base logico:] ogni sequente della forma $A \seq A$, con $A$ formula qualsiasi.
+			\item[Sequente base matematico:] tutti quei sequenti in cui compaiano solo formule atomiche e che, quindi, assumono valore $\top$ o $\bot$ con ogni arbitraria sostituzione di termini numerici al posto di variabili libere\footnote{In accordo con la nostra richiesta di decidibilità, il valore di "verità" delle formule atomiche senza variabili libere è sempre verificabile.}.
+	\end{description}
+	\end{defin}
+	\begin{description}
+		\item[e.g.:] Esempi di sequenti base sono:
+		\begin{align*}
+			\perogni x[A(x)\ee B(x'')] &\seq \perogni x[A(x)\ee B(x'')] \\ 
+			a<1' &\seq \\
+			&\seq a+b=c \\
+			x=y,\ y=z &\seq x=z \\
+		\end{align*}
+	\end{description}
+
+\subsection{Regole di Inferenza e Dimostrazioni} %????????????????????????????????????????
+
+		Nella formalizzazione delle dimostrazioni il vantaggio che deriva dall'uso dei sequenti sta nella semplicità con cui si trattano le relative regole di inferenza.
+				
+		Una \emph{figura d'inferenza} consiste in una \emph{linea di inferenza}, un \emph{sequente inferiore} $S$, considerato la conclusione, ed uno o più \emph{sequenti superiori} $S_{1}$ e $S_{2}$, considerati le premesse dell'inferenza. Le figure di inferenza si rappresentano quindi come uno dei due schemi qui riportati:
+	\begin{equation}
+			\frac{S_{1}}{S} \qquad \quad oppure\quad \qquad \frac{S_{1} \quad S_{2}}{S} \nonumber
+	\end{equation}
+		Generalmente alla linea di inferenza si affianca un'etichetta così da identificare la regola specifica che si sta usando.
+		Le figure di inferenza si suddividono in strutturali, operazionali e, a sé stante, la controparte formale dell'induzione completa (da qui in poi: \CJ{figura}). Nei seguenti schemi $\Gamma,\, \Delta,\, \Pi$ e $\Theta$ sono sequenze arbitrarie finite e possono, all'occorrenza, essere considerate vuote. L'attenzione è posta sulle lettere in gotico.
+	\subsubsection{Figure Strutturali}
+		Le figure strutturali consentono di manipolare il numero e l'ordine delle formule presenti in un'inferenza. Un ruolo a parte è ricoperto dalla regola del taglio che riproduce una sorta di proprietà transitiva. Gli \emph{schemi} per le figure strutturali sono:
+		\smallskip
+	\begin{align}
+		[\,Indebolimento\,]\qquad \frac{\Gamma \seq \Pi}{\gothD,\,\Gamma \seq \Pi} \quad & \qquad \frac{\Gamma \seq \Pi}{\Gamma \seq \Pi,\,\gothD} \nonumber \\[4mm]
+		[\,Contrazione\,]\qquad \frac{\gothD,\,\gothD,\,\Gamma \seq \Pi}{\gothD,\,\Gamma \seq \Pi} \quad & \qquad \frac{\Gamma \seq \Pi,\,\gothD\,\gothD}{\Gamma \seq \Pi,\,\gothD} \nonumber \\[4mm]
+		[\,Scambio\,]\qquad \frac{\Theta,\,\gothD,\,\gothB,\,\Gamma \seq \Pi}{\Theta,\,\gothB,\,\gothD,\,\Gamma \seq \Pi} \quad & \qquad \frac{\Gamma \seq \Pi,\,\gothB,\,\gothD,\,\Theta}{\Gamma \seq \Pi,\,\gothD,\,\gothB,\,\Theta} \nonumber
+	\end{align} 
+		\smallskip
+	\begin{equation}
+		 \qquad \quad \; [\,Taglio\,]\qquad  \frac{\Gamma \seq \Pi,\,\gothD \quad \quad \gothD,\,\Delta \seq \Theta}{\Gamma,\,\Delta \seq \Pi,\,\Theta} \nonumber
+	\end{equation}
+		\\[3mm]
+		Le due formule $\gothD$ nello schema del taglio sono chiamate \emph{formule tagliate} e il loro grado è il \emph{grado del taglio}. Qualora $\gothD$ sia della forma $s=t$ allora il taglio è detto \emph{non essenziale}. Tutte le figure strutturali ad eccezione del taglio sono dette \emph{deboli}.
+		
+		La regola dell'indebolimento asserisce che, dato un sequente, posso ottenerne uno ugualmente valido aggiungendo o una premessa o una conclusione. Nessun vincolo è posto sulla formula aggiunta: se qualcosa è deducibile lo è anche con una premessa in più, eventualmente inutile, se da determinate premesse posso dedurre almeno una delle conclusioni allora questo resterà vero aggiungendo un'ulteriore conclusione. Questo chiarisce anche il motivo del nome.
+		
+		La contrazione permette di eliminare premesse o conclusioni che si ripetono mentre lo scambio ne altera l'ordine. In effetti, se qualcosa è deducibile da una stringa di premesse che contiene due volte una stessa formula, è possibile farlo anche da una stringa che contenga quella tal formula una sola volta. Allo stesso modo, se è dimostrabile almeno una formula di una stringa che ne contiene una due volte, allora è dimostrabile almeno una formula di quella stessa stringa senza ripetizioni. Infine, l'ordine con cui compaiono le formule nella scrittura dei sequenti è ininfluente. 
+		
+	\subsubsection{Figure Operazionali}
+		Le figure operazionali consentono di introdurre connettivi e, quindi, di manipolare la struttura delle singole formule. Gli \emph{schemi} per le figure operazionali sono:
+		\smallskip
+	\begin{align}
+		[\,\ee:\,]\qquad \frac{\Gamma \seq \Theta,\,\gothU \qquad \Gamma \seq \Theta,\,\gothB}{\Gamma \seq \Theta,\,\gothU \ee \gothB} \quad & \qquad \frac{\gothU,\,\Gamma \seq \Theta}{\gothU \ee \gothB,\,\Gamma \seq \Theta} \quad \frac{\gothB,\,\Gamma \seq \Theta}{\gothU \ee \gothB,\,\Gamma \seq \Theta} \nonumber \\[4mm]
+		[\,\oo:\,]\qquad \frac{\gothU,\,\Gamma \seq \Theta \qquad \gothB,\,\Gamma \seq \Theta}{\gothU \oo \gothB,\,\Gamma \seq \Theta} \quad & \qquad \frac{\Gamma \seq \Theta,\,\gothU}{\Gamma \seq \Theta,\,\gothU \oo \gothB} \quad \frac{\Gamma \seq \Theta,\,\gothB}{\Gamma \seq \Theta,\,\gothU \oo \gothB} \nonumber \\[4mm]
+		[\,\perogni:\,]\qquad \frac{\Gamma \seq \Theta,\,\gothF(a)}{\Gamma \seq \Theta,\,\perogni \xi\,\gothF(\xi)} \quad & \qquad \frac{\gothF(t),\,\Gamma \seq \Theta}{\perogni \xi\,\gothF(\xi),\,\Gamma \seq \Theta} \nonumber \\[4mm]
+		[\,\esiste:\,]\qquad \frac{\gothF(a),\,\Gamma \seq \Theta}{\esiste \xi\,\gothF(\xi),\,\Gamma \seq \Theta} \quad & \qquad \frac{\Gamma \seq \Theta,\,\gothF(t)}{\Gamma \seq \Theta,\,\esiste \xi\,\gothF(\xi)} \nonumber \\[4mm]
+		[\,\nn:\,]\qquad \frac{\gothU,\,\Gamma \seq \Theta}{\Gamma \seq \Theta,\,\nn\,\gothU} \quad & \qquad \frac{\Gamma \seq \Theta,\,\gothU}{\nn\,\gothU,\,\Gamma \seq \Theta} \nonumber
+	\end{align}
+		\\[2mm]
+		All'interno di ogni schema qui presentato, la formula in cui si è aggiunto il connettivo logico è chiamata \emph{formula principale} della figura di inferenza. Le regole vengono dette \emph{destre} o \emph{sinistre} a seconda che la formula principale si trovi a destra o a sinistra del simbolo di \virg{$seq$}. Senza perdere di generalità, omettiamo le regole destra e sinistra per l'implicazione logica.  
+		
+		La struttura stessa dei sequenti giustifica senza bisogno di ulteriori spiegazioni le prime due regole.
+		Le regole del $\perogni$ affermano, nel primo caso, che se una certa proprietà è dimostrabile per un generico $a$ senza che esso abbia nulla di particolare, allora la stessa proprietà è dimostrabile per ogni numero. Nel secondo caso che se qualcosa è deducibile avendo come premessa una proprietà per uno specifico numero $t$, allora lo sarà anche se nelle premesse si assume che qualsiasi numero abbia quella proprietà. Un discorso analogo spiega le regole del $\esiste$.
+		
+		Come abbiamo appena anticipato, nelle regole sui quantificatori la lettera $a$ rappresenta una variabile libera mentre la lettera $t$ indica un termine. La variabile $a$, che chiameremo \emph{eigenvariable}, assume un ruolo particolare perché rappresenta un naturale qualsiasi e non un termine specifico, per questo motivo essa non può comparire libera nel sequente inferiore della stessa figura d'inferenza. La deduzione, altrimenti, perderebbe di significato. 
+		\begin{description}
+			\item[e.g.:] si consideri il seguente esempio in cui $P(x)$ si legge come \virg{$x$ è pari}:
+			\begin{prooftree}
+				\AxiomC{$P(a) \seq P(a)$}
+				\RightLabel{\ \ \textit{sbagliato!}}
+				\UnaryInfC{$P(a) \seq \perogni xP(x)$}
+			\end{prooftree}
+		Essendo $a$ libera, possiamo assegnarle un valore qualsiasi, ad esempio $0''= 2$. Così facendo, pur essendo partiti da un sequente lecito, questa inferenza ci ha portati al sequente $P(2)\seq\perogni xP(x)$, cioè \virg{$2$ è pari quindi ogni numero è pari}.
+		\end{description}
+	 	Per quanto riguarda la regola della negazione, conviene convincersene con un esempio:
+	 	\begin{description}
+	 		\item[e.g.:] in questo esempio $D(y,x)$ si legge come \virg{$y$ divide $x$}:
+	 		\begin{prooftree}
+	 			\AxiomC{$D(a,x),\, D(b,x) \seq D(a\times b,x)$}
+	 			%\RightLabel{\ \ \textit{sbagliato!}}
+	 			\UnaryInfC{$D(a,x) \seq D(a\times b,x),\, \nn D(b,x)$}
+	 		\end{prooftree}
+	 		Il primo sequente afferma che se $a$ divide $x$ e se anche $b$ divide $x$ allora possiamo dedurre che il prodotto $a\times b$ divide $x$. Il secondo afferma che da $a$ divide $x$ deduciamo o che il prodotto $a\times b$ divide $x$ oppure che $b$ non divide $x$.
+	 	\end{description}
+ 		Questo esempio dovrebbe indirettamente chiarire anche l'analoga forma sinistra. Infine, si notino alcune cose: 
+ 		\begin{itemize} 
+ 			\item le figure operazionali aumentano il grado delle formule principali di $1$;
+ 			\item non esiste alcuna regola per \emph{eliminare} i connettivi, che quindi possono solo essere introdotti;
+ 			\item non è possibile sostituire una formula con una equivalente, ad esempio $\nn\nn P(x)$ con $P(x)$, questo è risolvibile per mezzo della regola del taglio in quanto l'equivalenza di due formule sarà certamente esprimibile con un sequente dimostrabile. Ad esempio:
+ 			\begin{prooftree}
+ 				\AxiomC{\vdots}
+ 				\UnaryInfC{$\Gamma \seq \Delta,\, \nn\nn A$}
+ 				\AxiomC{$A \seq A$}
+ 				\RightLabel{\ \nn\ \textit{dx}}
+ 				\UnaryInfC{$\seq A,\, \nn A$}
+ 				\RightLabel{\ \nn\ \textit{sx}}
+ 				\UnaryInfC{$\nn\nn A\seq A$}
+ 				\LeftLabel{\textit{taglio}\ }
+ 				\BinaryInfC{$\Gamma \seq \Delta,\, A$}
+ 				\UnaryInfC{\vdots}
+ 			\end{prooftree}
+ 			dove, con la piccola deduzione sulla destra di questo schema abbiamo mostrato l'equivalenza delle due formule, mentre col taglio abbiamo sostituito una forma con l'altra nel sequente di nostro interesse.
+ 		\end{itemize}
+ 		
+	\subsubsection{$\bm{CJ-}\,$Figura}
+		L'assioma PA7 è essenziale nella definizione dell'aritmetica di Peano e rappresenta l'induzione nella sua forma debole, ma PA7 è a tutti gli effetti una regola di inferenza e come tale la tratteremo. Lo \emph{schema} per la figura di induzione completa è:
+	\begin{prooftree}
+		\AxiomC{$\gothF(a),\,\Gamma \seq \Pi,\,\gothF(a')$}
+		\LeftLabel{$[\,\CJ{figura}\,]$\quad\ \,}
+		\UnaryInfC{$\gothF(0),\,\Gamma \seq \Pi,\,\gothF(t)$}
+	\end{prooftree}
+		Questo schema è la formalizzazione dell'induzione completa, o forte, nel linguaggio del calcolo dei sequenti: la scelta di prediligere la forma forte rispetto a quella debole è di mera comodità, è infatti ben nota l'equivalenza logica delle due formulazioni.
+		
+		Il grado di una \CJ{figura} è il grado della formula $\gothF(0)$, il quale ovviamente coincide col grado di tutte le altre formule $\gothF(-)$ in essa contenute. 
+
+	\subsubsection{Dimostrazioni}
+		La consecutiva applicazione delle regole definite costituisce quella che chiamiamo \virg{dimostrazione} e, per tanto, la definiamo come segue:
+	\begin{defin}[Dimostrazione]
+		Una \emph{dimostrazione} $\proofsym$ è un albero di sequenti con radice tale che:
+	\begin{enumerate}
+		\item I sequenti posti più in alto (i.e. le foglie) sono sequenti base;
+		\item Ogni sequente in $\proofsym$, eccetto quello più in basso (i.e. la radice) è un sequente superiore di una figura d'inferenza il cui sequente inferiore è anch'esso in $\proofsym$.
+	\end{enumerate}
+	\end{defin}
+		Il sequente $S$ posto più in basso in $\proofsym$ viene chiamato \emph{sequente finale} o \emph{conclusivo} ed una dimostrazione che abbia $S$ come suo sequente finale viene chiamata \emph{dimostrazione di $S$}. Ne segue che $S$ si dirà \emph{dimostrabile} in una data teoria se e solo se ne esiste una qualche dimostrazione $\proofsym_{S}$. Analogamente, una formula $\gothF$ è dimostrabile se e solo se lo è il sequente $\seq \gothF$.
+	\begin{description}
+		\item[e.g.:] A titolo esemplificativo, dimostriamo il principio logico del \emph{tertium non datur}:
+		\begin{prooftree}
+			\AxiomC{$A\seq A$}
+			\RightLabel{\ \nn\ dx}
+			\UnaryInfC{$\seq A,\, \nn A$}
+			\RightLabel{\ \oo\ dx}
+			\UnaryInfC{$\seq A,\, A\oo \nn A$}
+			\RightLabel{\ scambio}
+			\UnaryInfC{$\seq A\oo \nn A,\, A$}
+			\RightLabel{\ \oo\ dx}
+			\UnaryInfC{$\seq A\oo \nn A,\, A\oo \nn A$}
+			\RightLabel{\ \textit{contrazione}}
+			\UnaryInfC{$\seq A\oo \nn A$}
+		\end{prooftree}
+	\end{description}
+	\begin{defin}[Dimostrazione Semplice]
+		Una dimostrazione $\proofsym$ si dice \emph{semplice} se non contiene alcuna variabile libera, i suoi sequenti base sono tutti matematici e contiene solo figure di inferenza deboli o, al più, dei tagli non essenziali.
+	\end{defin}
+		Le dimostrazioni semplici sono, più che un qualcosa di concreto, un artificio dimostrativo che ci tornerà utile in seguito.
+	\begin{description}
+		\item[e.g.:] Nonostante ciò, ne presentiamo comunque un esempio meramente illustrativo:
+		\begin{prooftree}
+			\AxiomC{$0=0 \seq 1=1$}
+			\LeftLabel{\textit{indebolimento}\ }
+			\UnaryInfC{$0=0 \seq 1=1,\ 1=1$}
+			\LeftLabel{\textit{contrazione}\ }
+			\UnaryInfC{$0=0 \seq 1=1$}
+			\AxiomC{$1=1 \seq 2=2$}
+			\RightLabel{\ \textit{taglio}}
+			\BinaryInfC{$0=0 \seq 2=2$}
+		\end{prooftree}
+	\end{description} 
+		L'idea che una dimostrazione possa essere visualizzata tramite un albero con radice porta a formulare il concetto di \emph{cammino} come, intuitivamente, una successione di sequenti che dobbiamo discendere da quelli iniziali fino alla conclusione della dimostrazione. Ad ogni passo attraverseremo una linea di inferenza.
+		Segue in modo assolutamente intuitivo cosa si intenda, in uno stesso cammino, quando si dice che un sequente è \emph{più in alto} (o \emph{più in basso}) di un altro. Quindi, quando la posizione di due sequenti sarà messa a confronto, si intenderà che questi appartengano allo stesso cammino, altrimenti il concetto perde di significato. In aggiunta introduciamo:
+	\begin{defin}[Livello]
+		Il \emph{livello di un sequente} in una dimostrazione è il più grande grado di un qualsiasi taglio o \CJ{figura} il cui sequente inferiore si trova al di sotto del sequente considerato\footnote{Si può pensare al livello di un sequente come alla sua "altezza" all'interno dell'albero della dimostrazione, in effetti se si procede lungo la dimostrazione il livello generalmente decresce.}. Se le due figure non sono presenti allora il livello è $0$.
+	\end{defin}
+		Come suggerisce il nome, è facile verificare che il livello di un sequente non aumenta percorrendo un cammino in direzione della radice. Nell'esempio che segue, accanto ad ogni sequente indichiamo, tra parentesi quadre, il suo livello nella dimostrazione.
+	\begin{description}
+		\item[e.g.:] In questo esempio $\gothF_{4}$ rappresenta una generica formula di grado $4$. Evidenziamo con una doppia linea le \virg{\emph{figure di livello}}, ossia i tagli e le \CJ{figure}.
+		\begin{prooftree}
+			\AxiomC{$\seq 0=0$ [1]}
+				\AxiomC{\vdots}
+				\UnaryInfC{$\seq \gothF_{4}$ [4]}
+					\AxiomC{$a=a \seq a'=a'$ [4]}
+						\doubleLine
+					\RightLabel{\ \textit{CJ}}
+					\UnaryInfC{$0=0 \seq b=b$ [4]}
+					\UnaryInfC{$\gothF_{4},\, 0=0 \seq b=b$ [4]}
+						\doubleLine
+				\RightLabel{\textit{taglio}}
+				\BinaryInfC{$0=0 \seq 1=1$ [1]}
+					\doubleLine
+			\RightLabel{\textit{taglio}}
+			\BinaryInfC{$\seq 1=1$ [1]}
+			\UnaryInfC{$\seq \perogni x(x=x)$ [1]}
+			\AxiomC{$0'''=0'''\seq 0'''=0'''$ [1]}
+			\UnaryInfC{$\perogni x(x=x)\seq 0'''=0'''$ [1]}
+				\doubleLine
+			\LeftLabel{\textit{taglio}}
+			\BinaryInfC{$\seq 0'''=0'''$ [0]}
+		\end{prooftree}
+	\end{description} 
+		Osserviamo l'esempio: il sequente finale ha grado $0$ per definizione; il taglio appena sopra ha come formula tagliata $\perogni x(x=x)$ che ha grado $1$, quindi i suoi sequenti superiori hanno grado $1$; l'assioma a destra ha grado anch'esso $1$ perché non vi sono altre \emph{figure di livello} al di sotto. Guardando il lato sinistro, la prima \emph{figura di livello} che si incontra è il taglio che ha come formula tagliata $0=0$ (di grado $0$), di conseguenza questo taglio non influenza il livello dei sequenti sopra di esso. Il taglio immediatamente sopra ha grado $4$ poiché la sua formula tagliata è $\gothF_{4}$ quindi tutti i sequenti al di sopra della sua linea di inferenza avranno livello $4$ a meno che non vi sia un altra \emph{figura di livello} di grado superiore al di sopra di esso. L'unica possibile candidata ad aumentare il livello è la \CJ{figura} sopra di lui che però ha grado $0$, quindi il livello resta $4$.
+		
+		La scelta di formalizzazione attraverso il calcolo dei sequenti si rivela particolarmente adatta alla scopo del prossimo capitolo: grazie ad esso si risolvono facilmente molti dei problemi che la stessa dimostrazione di consistenza avrebbe se formulata nell'ambito della \emph{deduzione naturale}. Nelle strutture qui introdotte, infatti, ogni connettivo viene trattato in ugual modo escludendo così spiacevoli singolarità. Sebbene le regole del calcolo dei sequenti siano meno intuitive, o comunque meno \virg{leggibili}, rispetto alle regole adottate in deduzione naturale, con un po' di pazienza è facile verificarne la corrispondenza, la questione esula però lo scopo di questo lavoro.
+		
+\chapter{La Dimostrazione della Consistenza} %per la Consistenza
+		Il nostro obiettivo è di mostrare che l'Aritmetica di Peano è una teoria consistente, cioè che non sia in alcun modo possibile esibire al suo interno una dimostrazione corretta che conduca ad una contraddizione. In altre parole vogliamo escludere la possibilità di dimostrare al contempo sia $\seq \gothF$ sia $\seq \nn\gothF$ \footnote{Una formula $\gothF$ è dimostrabile in una teoria formalizzata attraverso il calcolo dei sequenti se e solo se esiste una dimostrazione corretta del sequente $\seq \gothF$.} o, ancora, la possibilità di dimostrare $\seq \gothF \ee \nn\gothF$.
+		
+		Come anticipato in precedenza il sequente vuoto gioca un ruolo fondamentale in questo senso, infatti:
+	\begin{lemma}
+		Una teoria $T$ è consistente se e solo se non può dimostrare $\emptyseq\,$.
+	\end{lemma}
+	\begin{proof}
+		Mostriamo che $\emptyseq$ è equivalente a $\seq \gothF\ee \nn\gothF$.\\
+		($\Leftarrow$) Da $\seq \gothF\ee \nn\gothF$ deduco $\seq \nn\gothF$ e $\gothF\seq$ da cui, con un taglio, ottengo il sequente vuoto.\\
+		($\Rightarrow$) La regola dell'indebolimento permette di inferire qualsiasi sequente da $\emptyseq$.
+		\qedhere
+	\end{proof}	
+		Il lemma appena dimostrato afferma che se è possibile inferire correttamente $\emptyseq$ all'interno di una teoria, allora questa è inconsistente, ma anche che in una teoria inconsistente è possibile trovare una dimostrazione di $\emptyseq$. Equivalentemente: se di una teoria posso provare l'incapacità di dimostrare $\emptyseq$, allora posso dimostrarne anche la consistenza. Procederemo in questo senso.
+		
+		Per cominciare, appare sensato analizzare la consistenza delle dimostrazioni semplici, così poi da poter passare alle dimostrazioni \emph{più complesse} sfruttando la consistenza di quelle \emph{meno complesse} e procedendo ricorsivamente.
+		
+		Però, pur ammettendo di aver chiarito una definizione di complessità per una dimostrazione, potrebbe capitare che questa scelta dimostrativa ci porti ad esaminare classi infinite di dimostrazioni prima di poter passare alla \virg{complessità successiva}. Per esempio, potrei dover prima analizzare tutte le dimostrazioni che partono da un solo sequente base, poi tutte quelle che partono da due, da tre e via dicendo. Sebbene questo esempio sia eccessivamente semplicistico, evidenzia chiaramente che non possiamo escludere a priori che la nostra ricorsione assuma la forma dell'\emph{induzione transfinita}. Anzi, pare verosimile che assuma proprio una forma simile. Nella pratica, in ogni caso, l'analisi delle inferenze sarà ovviamente più articolata di quella presa in esempio e l'induzione transfinita giocherà un ruolo cruciale\footnote{La formalizzazione dell'induzione completa all'interno di PA è il motivo per cui dimostrarne la consistenza richiede l'induzione transfinita.}. La dimostrazione procederà in tre fasi:
+		
+		1) Assegnando un numero ordinale ad ogni dimostrazione, come mostrato nella sezione $2.1$, saremo in grado di dare un significato preciso\footnote{Limitatamente al contesto di questa dimostrazione.} al concetto di "complessità" in questo senso: più è grande l'ordinale assegnato ad una derivazione, più questa sarà da ritenersi complessa. Capiremo quindi come procedere affinché la consistenza delle dimostrazioni venga ridotta alla consistenza di dimostrazioni più semplici e sfrutteremo questa idea per mostrare, con un assurdo, che non è possibile derivare il sequente vuoto. Infatti:
+		
+		2) Definendo in modo rigoroso un "passo riduttivo" per un'arbitraria dimostrazione \emph{contraddittoria}, che abbia cioè il sequente vuoto come conclusione, saremo in grado di trasformarla in una dimostrazione più semplice con lo stesso sequente finale. Daremo prova di questo fatto mostrando che il passo riduttivo applicato ad una dimostrazione contraddittoria ne riduce l'ordinale assegnato. I dettagli di questo procedimento sono oggetto della sezione $2.2$. 
+		 
+		3) Grazie al Teorema di Accessibilità, dal punto precedente segue necessariamente la consistenza di tutte le dimostrazioni: si vedrà infatti che non è possibile né esibire una dimostrazione semplice e al contempo contraddittoria, né esibirne una \emph{complessa}, ché altrimenti sarebbe semplificabile infinite volte.
+		
+\section{Ordinali e Teorema di Accessibilità}
+		% serve? una breve discussione filosofica sul punto di vista finitistico. Dove?
+	\begin{defin}[Numeri Ordinali $\le\epsilon_{0}$]
+		Definiamo in modo ricorsivo il concetto di \emph{numero ordinale} fino ad $\epsilon_{0}$ sulla base della forma normale di Cantor in quanto la sua struttura si interfaccia meglio alla struttura delle dimostrazioni cui gli ordinali si legheranno. Assieme definiamo anche una $<$--relazione tra di essi e il concetto di uguaglianza:
+		\begin{enumerate}
+			\item Il sistema $\Sordinale{0}$ consiste nel solo numero $0$, diremo che $0 = 0$ e che non $0 < 0$.
+			\item Si suppongano già definiti i numeri in $\Sordinale{\rho} \, (\rho \in \N)$\footnote{e.g. $\Sordinale{1}$ consiste nei numeri: $0$, $\omega^{0}$, $\omega^{0} + \omega^{0}$, \ldots\ e quindi, per la definizione 1.3.2, nell'insieme dei numeri naturali $\N$.\ \Egrave facile convincersi che $\Sordinale{n}$ sia l'insieme di tutti i numeri ordinali minori di $\omega_{n}$.} ed in essi l'uguaglianza $=$ e la $\,<$--relazione, allora un generico numero di $\Sordinale{\rho+1}$ è della forma:
+			\begin{equation}
+				\omega^{\alpha_{1}} + \omega^{\alpha_{2}} + \ldots + \omega^{\alpha_{\mu}} \nonumber
+			\end{equation}
+			dove $\omega$ è un generico simbolo, $\alpha_{i} \in \Sordinale{\rho}$ e $\alpha_{1}\ge\alpha_{2}\ge\ldots\ge\alpha_{\mu}$. 
+			
+			Dati $\beta, \gamma \in \Sordinale{\rho+1}$ (notando che $\perogni \rho\in\N$, $\Sordinale{\rho} \subset \Sordinale{\rho+1}$), diremo che $\beta<\gamma$ ($\beta>\gamma$) se, detti $\alpha_{i}$ e $\overline{\alpha}_{i}$ i primi esponenti in cui differiscono le scritture di $\beta$ e $\gamma$, $\alpha_{i}<\overline{\alpha}_{i}$ ($\alpha_{i}>\overline{\alpha}_{i}$). 
+			
+			I singoli $\omega^{\alpha_{i}}$ sono chiamati \emph{monomi fomali}.
+			\item $\epsilon_{0}$ è un numero ordinale e, per ogni ordinale $\alpha$ definito in 1. e 2., vale $\alpha<\epsilon_{0}$.
+		\end{enumerate}
+	\end{defin}
+		Si noti che, data una qualsiasi scrittura, è sempre decidibile se questa sia o meno un numero ordinale. Allo stesso modo, dati due ordinali è sempre decidibile se questi siano uguali o quale sia minore e quale, di conseguenza, maggiore. \Egrave conveniente pensare a questa definizione come \emph{puramente formale}, senza cioè attribuire significati concreti ai simboli in essa contenuti (i.e. $\omega$ non dovrebbe essere inteso come \emph{"un numero infinito"}). In alternativa, si potrebbe pensare ai numeri appena definiti come \emph{funzioni} nell'indeterminata $\omega$, essendoci un naturale isomorfismo tra i due insiemi\footnote{\Egrave curioso, in questo modo, interpretare la disuguaglianza $\beta<\gamma$ ($\beta>\gamma$) come una disuguaglianza \emph{al limite} delle \virg{corrispondenti} funzioni.}. Alleggerendo la notazione:
+	\begin{defin}
+		\hfill $\displaystyle \omega_{n+1}:=\omega^{\omega_{n}}$ \quad dove \ $\omega_{0}:=1$. \hfill \phantom{Definizione}
+	\end{defin}
+		Infine annotiamo una definizione alternativa dell'ordinale $\epsilon_{0}$:
+	\begin{defin}
+		\hfill $\displaystyle{\epsilon_{0} \  := \; \lim_{n \to \inf} \omega_{n}}$ \hfill \phantom{Definizione}
+	\end{defin}
+		%Equivalentemente si può definire $\epsilon_{0}$ come la più piccola soluzione di $\alpha=\omega^{\alpha}$. L'equivalenza delle due definizioni dovrebbe essere intuitiva.
+		L'equivalenza della due definizioni per $\epsilon_{0}$ appare abbastanza pacifica a patto di accettare, come chiariremo a breve, un piccolo \virg{\textit{furto}} di notazione.
+		
+		Introduciamo quindi il concetto di somma di ordinali: $\ordsum{\alpha}{\beta}$ è definito come il concatenamento della rappresentazione di $\beta$ a quella di $\alpha$, legate da un segno "$+$", in cui i monomi formali vengono riordinati in modo decrescente. Sempre per comodità di rappresentazione, scriviamo $n\cdot\alpha$ al posto di $\alpha+\ldots+\alpha$ dove $\alpha$ compare $n$ volte, pur consapevoli che questa non è da intendersi come l'usuale moltiplicazione. Il seguente esempio dovrebbe chiarire quanto appena descritto:
+	\begin{equation}
+		\quad \; \mathrm{siano} \qquad \alpha = \omega^{\omega^{1}+1}+1 \qquad \mathrm{e} \qquad \beta = \omega^{\omega^{\omega^{1+1+1}}+1}+\omega^{\omega^{1}+1}+\omega^{1} \nonumber %\\[2mm]
+	\end{equation}
+	\begin{equation}
+		\Rightarrow \quad \ordsum{\alpha}{\beta}\, =\, \omega^{\omega^{\omega^{1+1+1}}+1}+2\cdot\omega^{\omega^{1}+1}+\omega^{1}+1 \nonumber
+	\end{equation}
+	\begin{defin}[Ordinali Limite]
+		Diremo che $\alpha$ è un \emph{ordinale limite} se esiste un ordinale minore di $\alpha$ e per ogni ordinale $\beta$ minore di $\alpha$, esiste un terzo ordinale $\gamma$ tale che $\beta<\gamma<\alpha$.
+	\end{defin}
+		In altre parole, $\alpha$ è un ordinale limite se è punto limite per una successione di ordinali infinita e strettamente crescente, avendo in mente la \emph{topologia di ordine}. Ne segue che l'adozione di una notazione tipica dell'Analisi è, speriamo almeno parzialmente, perdonabile. In effetti non useremo nulla che non sarebbe comunque esprimibile a partire dalla definizione usando una notazione forse meno leggibile.
+		
+		Nel nostro caso alcuni esempi evidenti di ordinali limite sono $\omega$ così come ogni $\omega_{n}$, ossia gli estremi superiori dei sistemi $\Sordinale{n}$ per $n\in\N$, e l'ordinale $\epsilon_{0}$.
+		In questo senso $\omega=\lim_{n \to \inf} n$. Gli $\omega_{n}$ con $n\geq1$ sono gli ordinali limiti per le successioni $\{\omega_{n-1}^k\}_{k\in\N}$ al tendere di $k$ ad infinito\footnote{\Egrave utile osservare che $\omega_{n}:=\omega^{\omega_{n-1}}=\omega_{n-1}^{\omega}$.}. Analogamente $\epsilon_{0}$ sappiamo già essere il limite della successione $\{\omega_{n}\}_{n\in\N}$. 
+	\begin{defin}[Accessibilità]
+		Diremo che un numero ordinale $\alpha$ è \emph{accessibile} se ogni sequenza strettamente decrescente che parta da $\alpha$ è finita.
+	\end{defin}
+	\begin{comment}
+		%%%%%%%% pg. 98 Takeuti, siamo sicuri che questa cosa sia effettivamente rilevante?
+		%%%%%%%% L'HO CAPITA STA ROBA???
+		Consideriamo la definizione di \emph{accessibilità} per un dato numero ordinale solo quando abbiamo effettivamente visto, o dimostrato costruttivamente, che quel dato numero ordinale è accessibile, i.e. ha la proprietà specificata nella dimostrazione. Non diamo quindi una definizione generale della nozione di accessibilità.
+	\end{comment}	
+		Si noti che non c'è nessun conflitto tra la definizione di ordinale limite e quella di ordinale accessibile: un conto è esibire una successione infinita e strettamente crescente di ordinali che, pur non terminando mai, ammette come punto limite un certo altro ordinale, tutt'altra cosa è riuscire ad esibire una successione infinita e strettamente decrescente che abbia come inizio proprio quel punto limite\footnote{Una vaga intuizione di ciò può essere data dal fatto che ogni ordinale non limite è, di fatto, un punto isolato. Si provi a ragionare su $\N\cup\{+\infty\}$.}.
+	\subsection{Relazione tra Ordinali e Derivazioni}
+		Supponiamo data una dimostrazione $\proofsym$: siamo interessati ad associarle un numero ordinale $\ordof{D}$ sulla base della sua struttura, in un modo tale che ne rispecchi l'idea di complessità. Così facendo potremo mostrare, attraverso $\ordof{D}$, come la riduzione descritta in 1.4 porta effettivamente ad una diminuzione di complessità per $\proofsym$.
+		
+		Il calcolo parte assegnando l'ordinale $1$ ai sequenti iniziali della dimostrazione. Supponiamo assegnato l'ordinale del sequente superiore di una figura di inferenza: calcoliamo l'ordinale della figura stessa in questo modo:
+		
+		\emph{Se la figura è strutturale} distinguiamo tra figure strutturali deboli e taglio: alle prime associamo lo stesso ordinale del loro sequente superiore, al taglio invece associamo la somma degli ordinali dei due sequenti superiori.
+		
+		\emph{Se la figura è operazionale} aggiungiamo un $+1$ all'ordinale del sequente superiore, nel caso in cui questi siano più di uno consideriamo quello con l'ordinale maggiore.
+		
+		\emph{Se è una \CJ{figura}} il cui sequente superiore ha ordinale $\omega^{\alpha_{1}} + \ldots + \omega^{\alpha_{\mu}}$ ($\mu\ge 1$), assegniamo $\omega^{\alpha_{1}+1}$ alla figura, dove $\omega^{\alpha_{1}}$ è il monomio formale maggiore dell'ordinale.
+		
+		Sia ora $\alpha$ l'ordinale della figura di inferenza, al sequente inferiore si assegna $\alpha$ se sequente inferiore e sequente superiore sono allo stesso \emph{livello}, altrimenti si assegna $(\omega_{L})^{\alpha}$ dove $L$ rappresenta la differenza in valore assoluto tra i \emph{livelli} dei sequenti inferiore e superiore. (e.g. se hanno lo stesso livello si assegna $\alpha$, se è inferiore di un livello si assegna $\omega^{\alpha}$, se è inferiore di due $\omega^{\omega^{\alpha}}$, \ldots). Si noti che gli unici casi in cui il livello cambia è quando la figura di inferenza è o un taglio o una \CJ{figura} il cui grado è il maggiore procedendo verso il basso.
+	\begin{defin}
+		L'ordinale $\ordof{D}$ di una dimostrazione è l'ordinale del suo sequente finale.
+	\end{defin}
+		La bontà di questa definizione è garantita dal fatto che tutte le operazioni descritte sono in accordo con la definizione di numero ordinale data in questa sezione e, quindi, per ogni dimostrazione $\proofsym$ il suo ordinale $\ordof{D}$ è \emph{ben definito}.
+	\begin{comment}
+		NOTA: le dimostrazioni semplici sono le sole con ordinale "basso"? i.e. tutte le dimostrazioni con ordinale sotto ad un certo valore sono tutte semplici? Altrimenti non ho concluso nulla perché potrei arrivare ad una dimostrazione con ordinale 0 ma non "semplice" e quindi nessuno mi garantirebbe la sua consistenza...
+		(equivale a: qualsiasi dimostrazione che NON sia semplice ha ordinale maggiore di una dimostrazione semplice?)
+	\end{comment}
+	\subsection{Teorema di Accessibilità}
+		Vogliamo ora mostrare che ogni ordinale fino ad $\epsilon_{0}$ è accessibile nel senso introdotto precedentemente. Questo risultato, sapendo come gli ordinali siano strettamente legati alle dimostrazioni, risulterà fondamentale per dimostrare la consistenza dell'Aritmetica di Peano.
+		Si noti che, pur essendo possibile farlo\footnote{Si veda l'articolo di Gentzen \emph{"Beweisbarkeit und Unbeweisbarkeit von Anfangsfallen der transfiniten Induktion in der reinen Zahlentheorie"}, tradotto in inglese nei suoi \emph{Collected Papers}, per un'esplicita dimostrazione di indecidibilità in PA dell'induzione transfinita fino a $\epsilon_{0}$.}, non è necessario formalizzare l'enunciato del teorema di accessibilità in PA perché fa parte della \emph{metateoria} con cui ne dimostriamo la consistenza. In effetti, sebbene questo sia effettivamente enunciabile in PA, dovrebbe nascere il sospetto che possa essere ivi indimostrabile in quanto, come anticipato, si richiamano idee tipiche dell'analisi reale. Vale la pena ricordare che:
+	\begin{lemma}%[ordinali come spazio topologico]
+		L'insieme degli ordinali $\leq \epsilon_{0}$ costituisce uno spazio topologico.
+	\end{lemma}
+	\begin{proof}
+		Poiché l'insieme degli ordinali è totalmente ordinato, si considerino gli aperti $(\alpha$, $\beta)=\{x:\alpha<x<\beta\}$: questi formano una base per la topologia di ordine.
+	\end{proof}
+	\begin{lemma}[degli ordinali minori]
+		Sia $\alpha$ accessibile, allora ogni $\beta<\alpha$ è accessibile.
+	\end{lemma}	
+	\begin{proof}
+		Sia $\{\alpha_{i}\}_{\beta}$ una generica successione strettamente decrescente da $\alpha$ a $0$ passante per $\beta$, allora ogni $\{\beta_{i}\}$ strettamente decrescente da $\beta$ a $0$ è sottoinsieme di una certa $\{\alpha_{i}\}_{\beta}$. Se così non fosse potrei costruire una nuova $\{\alpha_{i}\}_{\beta}$ non considerata.
+		L'accessibilità di $\alpha$ implica che ogni $\{\alpha_{i}\}$ è finita, quindi ogni $\{\alpha_{i}\}_{\beta}$ è finita e, di conseguenza, ogni $\{\beta_{i}\}$ è finita. Quindi $\beta$ è accessibile.
+		\begin{comment}
+		Sia $\{\beta_{i}\}$ una generica successione strettamente decrescente da $\beta$ a $0$. Poiché $\{\beta_{i}\}\subset\{\alpha_{i}\}$ per un'opportuna successione strettamente decrescente $\{\alpha_{i}\}$ da $\alpha$ a $0$ allora necessariamente $\{\beta_{i}\}$ è finita.
+		\end{comment}
+	\end{proof}
+	\begin{lemma}[degli ordinali limite]
+		Se $\alpha$ è l'ordinale limite di una successione strettamente crescente $\alpha_{n}$ i cui termini sono tutti accessibili, allora $\alpha$ è accessibile.
+	\end{lemma}	
+	\begin{proof}
+		Ogni successione strettamente decrescente da $\alpha$ sarà $\alpha>\beta>\ldots$ per un generico ordinale $\beta<\alpha$. Per la seconda definizione di ordinale limite vale che:
+		\begin{center}
+		$\perogni\beta(\beta<\alpha\allora\esiste\overline{n}:\alpha_{\overline{n}}(\beta<\alpha_{\overline{n}}<\alpha))$.
+		\end{center}
+		Ma $\alpha_{\overline{n}}$ è accessibile per ipotesi, quindi anche $\beta$ lo è per il lemma precedente. Questo implica che ogni successione $\alpha>\beta>\ldots$ è finita. Per \emph{induzione transfinita} concludiamo la dimostrazione.
+	\end{proof}
+	\begin{comment}
+		\begin{equation}
+			scrivi principio di induz transfinita \nonumber
+		\end{equation}
+	\end{comment}	
+	%	Quindi:
+	\begin{teo}[di Accessibilità]
+		Tutti gli ordinali $\leq \varepsilon_0$ sono accessibili.
+	\end{teo}
+	\begin{proof}
+		Procediamo per successive applicazioni del principio di \emph{induzione} e del lemma degli ordinali limite. \\
+		$0$ è accessibile. Ogni successione strettamente decrescente che parte da $n\in\N$ è al più composta da $n+1$ passi, quindi ogni numero naturale è accessibile ed $\omega$ è accessibile per il lemma. \\
+		Se dimostriamo che ogni $\omega_{n}$ è accessibile allora per il lemma anche $\epsilon_{0}$ è accessibile. Procediamo quindi per induzione su $n$: abbiamo verificato il caso per $n=1$, mostriamo che l'accessibilità di $\omega_{n}$ implica quella di $\omega_{n+1}$. In altre parole dobbiamo mostrare che $\omega_{n+1}$ è l'ordinale limite per una qualche successione strettamente crescente di ordinali accessibili $\{\alpha_{k}\}_{k\in\N}$ con $\perogni k>0 (\omega_{n}\leq\alpha_{k}<\omega_{n+1})$, poi applicheremo il lemma. \\
+		Sia $\alpha_{k}=\omega_{n}^k$, dobbiamo mostrare l'accessibilità di ogni termine di questa successione e lo faremo, ancora una volta, per induzione su $k$. Se $k=1$ la proprietà è supposta vera, sia ora $(\omega_{n})^k$ accessibile, mostriamo che lo è anche $(\omega_{n})^{k+1}$. \\
+		Con un'ultima iterazione di questo schema dimostrativo: esibiamo una sequenza di ordinali il cui limite è proprio $(\omega_{n})^{k+1}$. Questa è $\{\beta_{m}\}_{m\in\N}$ dove $\beta_{m} = m\cdot(\omega_{n})^k$. Se ogni $\beta_{m}$ risultasse accessibile allora anche il limite $(\omega_{n})^{k+1}$ lo sarebbe.
+		Per $m=1$ lo sappiamo. Sia $m>1$ e supponiamo $m\cdot(\omega_{n})^k$ accessibile: indaghiamo $(m+1)\cdot(\omega_{n})^k$. Certamente $\beta_{2m} = m\cdot(\omega_{n})^k+m\cdot(\omega_{n})^k \ge (m+1)\cdot(\omega_{n})^k$, quindi per il lemma degli ordinali minori, ci basta dimostrare che $\beta_{2m}$ è accessibile. In effetti:
+		\begin{lemma}
+			$\gamma$ accessibile implica $2\cdot\gamma=\gamma+\gamma$ accessibile.
+		\end{lemma}
+		\begin{proof}
+			Dovrebbe risultare abbastanza pacifico che tutte e sole le sequenze strettamente decrescenti $\{s_{i}\}^{2\gamma}_{\gamma}$ da $2\gamma$ a $\gamma$ siano ottenute dalle sequenze $\{s_{i}\}^{\gamma}_{0}$ traslando ogni termine di $+\gamma$ (c'è un naturale isomorfismo di insiemi ordinati tra le due). Questo vuol dire che le prime sono finite in quanto lo sono le seconde.
+			Inoltre una sequenza $\{s_{i}\}^{2\gamma}_{0}$ è finita se e solo se lo sono tutte le sequenze strettamente decrescenti da $2\gamma$ a $0$ che includono $\gamma$. Questo è dato dal fatto che ogni sequenza non passante per $\gamma$ può essere \emph{completata} ad una passante per esso semplicemente aggiungendovi $\gamma$ come termine ed eventualmente riordinandola, senza quindi alterarne la finitezza.
+			Dato che ogni $\{s_{i}\}^{2\gamma}_{0}$ completata è esprimibile come $\{s_{i}\}^{2\gamma}_{\gamma} \cup \{s_{i}\}^{\gamma}_{0}$, per sequenze opportunamente scelte, allora è finita e $2\gamma$ è accessibile.
+		\end{proof}
+		Abbiamo quindi mostrato per induzione su $m$ che, fissato $n$, tutti gli $m\cdot(\omega_{n})^k$ sono accessibili, quindi per il lemma degli ordinali limite lo è $\omega_{n}^{k+1}$. Poi, per induzione su $k$, tutti gli $\omega_{n}^{k}$ sono accessibili e lo stesso lemma dimostra l'accessibilità di $\omega_{n+1}$. Infine, per induzione su $n$, tutti gli $\omega_{n}$ sono accessibili e questo, con un'ultima applicazione del lemma sugli ordinali limite, conclude la dimostrazione del teorema di accessibilità.\\
+		\qedhere
+	\end{proof}
+	\begin{comment}
+		"questa dimostrazione l'ho inventata perché quella di gentzen usa la forma decimale degli ordinali e dei passaggi difficilmente traducibili nella forma di cantor qui esposta, metre quella del Takeuti non l'ho capita granché..."
+	\end{comment}
+\section{Passi Riduttivi e Conclusione}
+		In quest'ultima sezione mostreremo che una dimostrazione del sequente vuoto può essere ridotta ad una dimostrazione di $\emptyseq$ con ordinale strettamente minore. Ovviamente, non essendoci alcuna condizione aggiuntiva, questo processo può essere iterato indefinitamente, portando ad una sequenza infinita di ordinali strettamente decrescente. Tuttavia il Teorema di Accessibilità appena dimostrato ci garantisce che una tale sequenza non può esistere in quanto deve necessariamente terminare in un numero finito di passi, questo porta ad un assurdo e quindi alla conclusione che nessuna dimostrazione del sequente vuoto $\emptyseq$ può essere esibita in PA.
+		
+		Iniziamo escludendo fin da subito l'esistenza di dimostrazioni contraddittorie semplici.
+	\begin{lemma}
+		Non può esistere una dimostrazione semplice di $\emptyseq\,$.
+	\end{lemma}
+	\begin{proof}
+		Supponiamo che $\proofsym$ sia una dimostrazione semplice di $\emptyseq$: in essa tutti i sequenti base sono matematici e privi di variabili libere e, in quanto tali, è univocamente determinato il loro valore di verità\footnote{Ricordiamo che ad un sequente è assegnato il valore $\top$ se almeno una delle formule nell'antecedente è falsa o almeno una nel succedente è vera, altrimenti è assegnato $\bot$.}. Infatti, ogni sequente base ha valore $\top$, ma $\emptyseq$ ha valore $\bot$. Inoltre il valore di verità di ogni sequente nella dimostrazione è decidibile in quanto sono tutte formule atomiche senza variabili libere. Questo vuol dire che in $\proofsym$ almeno una figura d'inferenza ha il sequente superiore vero e quello inferiore falso. Le figure d'inferenza ammesse (figure deboli o tagli non essenziali) preservano in modo evidente il valore di verità lungo l'inferenza, da cui l'assurdo.
+	\end{proof}
+		Data una dimostrazione di $\emptyseq$, è ragionevole pensare di potervi trovare al suo interno una formula di \emph{massima complessità} (formalmente: di grado massimo) che dev'essere stata ottenuta per \emph{introduzione} del suo connettivo terminale. Questa intuizione è motivata dal fatto che abbiamo appena dimostrato l'impossibilità di costruire una dimostrazione semplice contraddittoria. 
+		Quel tale connettivo terminale, però, dev'essere stato eliminato prima di poter arrivare al sequente vuoto. Viene naturale supporre, quindi, che sia possibile evitare fin da subito di introdurlo.
+		
+		Inoltre, a pensarci bene, non dovrebbe essere essenziale che venga ridotta proprio la formula di massima complessità, poiché non possiamo supporre a priori che questa riduzione sia sempre possibile da subito. In effetti, ci aspettiamo che sia sufficiente poter ridurre una formula la cui complessità rappresenta un massimo \emph{locale}.
+		
+		Comunque, pensando in maniera ancora più generale, quello che ci importa è che sia sempre possibile effettuare una qualche semplificazione, a prescindere dalla struttura della dimostrazione contraddittoria. Cercheremo di mostrare proprio questo fatto.
+		
+		Come prima cosa è utile osservare che qualora una variabile libera non fosse utilizzata come eigenvariable in una figura d'inferenza successiva, allora non avrebbe alcuna ragion d'essere e, perciò, potrebbe essere sostituita con il numero $0$. 
+		Cosa si intenda lo dovrebbe chiarire questo esempio:
+	\begin{prooftree}
+		\AxiomC{$F(t) \seq F(t)$}
+		\LeftLabel{$\perogni$:}
+		\UnaryInfC{$\perogni x F(x) \seq F(t)$}
+		\LeftLabel{$\esiste$:}
+		\UnaryInfC{$\perogni x F(x) \seq \esiste x F(x)$}
+	\end{prooftree}
+		Qui abbiamo dedotto che esiste un $x$ con una certa \emph{caratteristica} $F$ dal fatto che ogni $x$ è tale che $F(x)$. In questo senso la $t$ è inutile come variabile libera perché non viene usata come eigenvariable in nessuna figura di inferenza della dimostrazione. Avremmo potuto ugualmente comporla in questo modo:
+	\begin{prooftree}
+		\AxiomC{$F(0) \seq F(0)$}
+		\LeftLabel{$\perogni$:}
+		\UnaryInfC{$\perogni x F(x) \seq F(0)$}
+		\LeftLabel{$\esiste$:}
+		\UnaryInfC{$\perogni x F(x) \seq \esiste x F(x)$}
+	\end{prooftree}
+		e la sua correttezza non sarebbe cambiata.
+	\begin{defin}[Finale]
+		Il \emph{finale} di una dimostrazione consiste in tutti i sequenti che incontro percorrendo a ritroso ogni possibile cammino, dal basso verso l'alto, partendo dal sequente conclusivo fino al sequente inferiore di un'inferenza operazionale compreso.
+		Qualora non vi fossero figure operazionali tutta la dimostrazione farebbe parte del suo stesso finale.
+	\end{defin}
+		Per il principio del terzo escluso, distinguiamo tra due casi:
+	\begin{enumerate}
+		\item Il finale contiene almeno una \CJ{figura}, allora mostreremo che è possibile effettuare una \CJ{riduzione};
+		\item Il finale non contiene (non contiene \emph{più}) una \CJ{figura}, in questo secondo caso invece mostreremo che è possibile effettuare una riduzione operazionale.
+	\end{enumerate}
+	\subsection{\textit{{CJ--}}Riduzione}
+		Supposto che il finale contenga almeno una \CJ{figura} allora scegliamo quella che occorre \emph{più in basso}, i.e. quella dal cui sequente inferiore posso condurre un cammino fino al sequente conclusivo della dimostrazione senza attraversare nessun'altra \CJ{figura}. Questa ha la forma:
+	\begin{prooftree}
+		\AxiomC{$\gothF(a),\, \Gamma \seq \Theta,\, \gothF(a')$}
+		\UnaryInfC{$\gothF(0),\, \Gamma \seq \Theta,\, \gothF(n)$}
+	\end{prooftree}
+		dove $n$ rappresenta un termine numerico, quello richiesto dalla dimostrazione, e non una variabile libera. Infatti, volendo dimostrare $\emptyseq$, l'induzione completa non può essere fine a se stessa ma deve condurre all'utilizzo di $\gothF(n)$ per un $n$ specifico. 
+		
+		Inoltre, in accordo con la sostituzione effettuata precedentemente, il sequente inferiore non contiene alcuna variabile libera. Questo è vero perché le uniche variabili libere che non vengono sostituite sono quella che vengono usate come eigenvariable di figure di inferenza, ma nessuna figura di questo tipo può apparire al di sotto della \CJ{figura} scelta, poiché il cammino da essa al sequente conclusivo attraversa solo figure strutturali. 
+		
+		Sia $n=0$, allora la \CJ{figura} può essere sostituita da una derivazione composta solo da figure strutturali:
+	\begin{prooftree}
+		\AxiomC{$\gothF(0) \seq \gothF(0)$}
+		\UnaryInfC{indebolimenti e scambi}
+		\UnaryInfC{$\gothF(0),\, \Gamma \seq \Theta,\, \gothF(0)$}
+	\end{prooftree}
+		Sia ora $n>0$, allora costruiremo un sistema di figure strutturali di questo tipo:
+	\begin{prooftree}
+		\AxiomC{$\gothF(0),\, \Gamma \seq \Theta,\, \gothF(0')$}
+		\AxiomC{$\gothF(0'),\, \Gamma \seq \Theta,\, \gothF(0'')$}
+		\LeftLabel{taglio}
+		\BinaryInfC{$\gothF(0),\, \Gamma,\, \Gamma \seq \Theta,\, \Theta,\, \gothF(0'')$}
+		\UnaryInfC{scambi e contrazioni}
+		\UnaryInfC{$\gothF(0),\, \Gamma \seq \Theta,\, \gothF(0'')$}
+		\AxiomC{$\gothF(0''),\, \Gamma \seq \Theta,\, \gothF(0''')$}	% per togliere i puntini
+		\LeftLabel{taglio}
+		\RightLabel{\phantom{zzzzzz}}				% centrare manualmente l'albero
+		\BinaryInfC{$\gothF(0),\, \Gamma,\, \Gamma \seq \Theta,\, \Theta,\, \gothF(0''')$}
+		\UnaryInfC{scambi e contrazioni}
+		\UnaryInfC{$\gothF(0),\, \Gamma \seq \Theta,\, \gothF(0''')$}
+		\UnaryInfC{$\vdots$}
+		\noLine
+		\UnaryInfC{iterando}
+		\noLine
+		\UnaryInfC{$\vdots$}
+		\UnaryInfC{$\gothF(0),\, \Gamma \seq \Theta,\, \gothF(n)$}
+	\end{prooftree}
+		In questa struttura ogni sequente del tipo di $\gothF(0),\, \Gamma \seq \Theta,\, \gothF(0')$ è introdotto dalla parte di dimostrazione che precede il sequente iniziale della \CJ{figura} che abbiamo sostituito, ossia $\gothF(a),\, \Gamma \seq \Theta,\, \gothF(a')$, in cui $a$ è stata rispettivamente sostituita con $0$, $0'$, $0''$ \ldots\ in tutti i sequenti soprastanti. Da $\gothF(0),\, \Gamma \seq \Theta,\, \gothF(n)$ in poi la dimostrazione continua immutata fino alla conclusione.
+		
+		Il significato \emph{informale} della $\CJ{riduzione}$ è quello di sostituire un'induzione completa fino ad un certo numero con il corrispondente numero di inferenze \emph{ordinarie}.
+	\subsection{Osservazioni Preparatorie}
+		Supponiamo ora il secondo caso, quello in cui una dimostrazione del sequente vuoto non contiene \CJ{figure} nel suo finale o che esse siano state tutte ridotte.
+	\begin{defin}
+		Formule che occorrono identiche all'interno di una figura di inferenza, come le $\gothD$ nella contrazione o nel taglio, e ivi si corrispondono, sono dette \emph{raggruppate}.
+	\end{defin}
+	\begin{defin}
+		Nel finale, un \emph{raggruppamento associato ad una formula} è costituito dalla formula in questione, da tutte le formule raggruppate con essa, da tutte le formule raggruppate con queste ultime e così via. Sono sostanzialmente tutte le occorrenze della stessa formula collegate tra loro.
+	\end{defin}
+	\begin{description}
+		\item[e.g.:] nello schema che sostituisce la \CJ{figura} per $n>0$, tutte le occorrenze di $\gothF(0'')$ costituiscono, assieme, un raggruppamento. Come ulteriore esempio si osservino anche tutte le occorrenze di $\gothF(0)$.
+	\end{description}
+		Dato che la conclusione di una dimostrazione è il sequente vuoto, ogni raggruppamento così definito deve necessariamente terminare in una coppia di formule tagliate (si veda il primo esempio). Diremo quindi che ogni raggruppamento in una dimostrazione contraddittoria è \emph{associato} al suo taglio.
+		
+		Per tracciare un raggruppamento partiamo quindi dal suo taglio: questo ha un sequente superiore destro ed uno sinistro, di conseguenza la parte di raggruppamento che origina dalla formula tagliata nel sequente destro è la \emph{parte destra} mentre, analogamente, la parte \emph{sinistra} origina dalla corrispondente formula nel sequente superiore sinistro. Entrambe le parti del raggruppamento hanno una forma ad albero con la radice nella rispettiva formula tagliata. Ciascuna parte si \emph{dirama} se, salendo, incontra una contrazione. 
+		
+		Immaginando invece di leggere il finale della dimostrazione dalle sue premesse verso la conclusione, una diramazione si \emph{origina} in tre casi: quando la formula del raggruppamento fa parte di un sequente base, quando è la formula principale di una figura operazionale o quando è introdotta da un indebolimento. Chiameremo \emph{foglie} le formule del raggruppamento da cui la diramazione inizia. Inoltre, per come è definita la figura del taglio, ogni formula nella parte destra è antecedente, mentre ogni formula nella parte sinistra è succedente. Inoltre, per quanto detto, è evidente che il taglio associato ad un raggruppamento sia unico.
+		
+		Siamo anche interessati ad eliminare tutte le occorrenze di indebolimenti e di sequenti base logici dal finale della dimostrazione, per non incorrere in fastidiose eccezioni. %quali sono le fastidiose eccezioni? 
+		Essendo l'eliminazione di primi vantaggiosa per l'eliminazione dei secondi, procederemo in quest'ordine.
+		
+		\emph{Indebolimenti}) Scegliamo, nel finale, l'indebolimento più in alto: isoliamo il raggruppamento che si origina dalla formula che esso introduce e lo cancelliamo, come se non avessimo mai dedotto il sequente inferiore del tale indebolimento. Se questo raggruppamento omesso incontrava una contrazione, la figura semplicemente si ometterà in quanto non più utile. Se invece il raggruppamento terminava in una coppia di formule tagliate, allora si procederà eliminando l'altro sequente superiore della figura assieme a tutto ciò che vi si trova al di sopra. Si deriva quindi il sequente inferiore del taglio usando, se necessario anche più di una volta, indebolimenti e scambi. L'eventualità di aver introdotto uno o più nuovi indebolimenti, più in basso del precedente, verrà trattata iterando il procedimento. L'eliminazione di tutti gli indebolimenti è garantita dal fatto che, ad ogni iterazione del processo, qualsiasi indebolimento introdotto si trova al di sotto di quello precedentemente considerato, raggiungendo così la fine della dimostrazione con un numero finito di iterazioni.
+		
+		\emph{Sequenti base logici}) Nel finale, un qualsiasi sequente $\gothF \seq \gothF$ eventualmente incontrato nel corso di una dimostrazione potrebbe invece venir introdotto \emph{ex novo} come sequente iniziale, omettendo così tutto ciò che vi sta sopra: consideriamo solo questo caso. Ad un sequente della forma $\gothF \seq \gothF$ non può essere applicata né una contrazione né uno scambio. Inoltre non vi si può applicare nemmeno un indebolimento in quanto sono stati tutti eliminati dal passo precedente. Quindi l'unica possibilità, ricordandoci che il finale non contiene figure operazionali, è che lo si trovi introdotto come sequente superiore di un taglio, ovvero:
+	\begin{prooftree}	
+		\AxiomC{$\Gamma \seq \Theta,\,\gothF$}
+		\AxiomC{$\gothF \seq \gothF$}
+		\LeftLabel{taglio}
+		\BinaryInfC{$\Gamma \seq \Theta,\,\gothF$}
+	\end{prooftree}
+		Oppure invertendo i due sequenti superiori qualora $\gothF$ si trovasse come antecedente del sequente \emph{non base}.
+		\begin{comment} 
+			\begin{prooftree}	
+				\AxiomC{$\gothF \seq \gothF$}
+				\AxiomC{$\gothF,\,\Gamma \seq \Theta$}
+				\LeftLabel{taglio}
+				\BinaryInfC{$\gothF,\,\Gamma \seq \Theta$}
+			\end{prooftree}
+		\end{comment} 
+		In entrambi i casi è evidente perché $\gothF \seq \gothF$ possa essere omesso. Abbiamo quindi ottenuto un finale priva di indebolimenti e di sequenti base logici.
+		
+		Una dimostrazione senza figure operazionali è interamente inclusa nel suo finale e, per quanto visto fin'ora, una tale dimostrazione può essere considerata priva di variabili libere, \CJ{figure}, sequenti base logici e indebolimenti. Inoltre i suoi tagli sarebbero tutti non essenziali. In altre parole avremmo una dimostrazione semplice di $\emptyseq$, il che è impossibile. In effetti, il lemma sulle dimostrazioni semplici ci garantisce come conseguenza proprio l'esistenza di almeno una figura operazionale in una derivazione contraddittoria.
+	\begin{lemma}[del posto adatto]
+		Nel finale esiste almeno un raggruppamento con almeno una foglia sia nella parte sinistra che nella parte destra, tale da essere la formula principale di una figura operazionale.
+	\end{lemma}
+	\begin{proof}
+		Per dimostrare il lemma esaminiamo, dall'alto verso il basso, tutti i cammini del finale i cui sequenti iniziali sono i sequenti inferiori di una figura operazionale. Ricordiamo che il finale di una dimostrazione pone i suoi confini esattamente nei sequenti inferiori di una figura operazionale, in altre parole stiamo sondando il finale a partire dai suoi bordi superiori.
+		
+		L'intento è quello di tracciare le formule principali delle figure operazionali da cui originano i nostri cammini per poi delinearne il raggruppamento.
+		In generale, se il sequente superiore di una figura d'inferenza del finale contiene la formula tracciata, anche il suo sequente inferiore la conterrà. L'unico caso in cui questo non è vero è quando la formula tracciata è la formula tagliata di un taglio.
+		Perché ciò accada, il raggruppamento della formula tagliata deve coincidere col raggruppamento della formula tracciata e quindi contenerla in entrambi i lati.
+		
+		Sicuramente il sequente vuoto non contiene la formula principale, quindi un tale taglio esiste necessariamente.
+		
+		Considerato che abbiamo eliminato tutte le occorrenze di indebolimenti e sequenti base logici, gli unici due posti in cui può originarsi l'altro lato del raggruppamento, quello che non abbiamo già esaminato, sono uno o più sequenti base matematici o un'altra figura operazionale dello stesso tipo (questo perché il connettivo introdotto dev'essere lo stesso).
+		Il primo caso è tuttavia impossibile perché, sempre per via delle eliminazioni effettuate sul finale, la formula tracciata dovrebbe essere atomica, così come da definizione di sequente base matematico. Ma una formula principale di una figura operazionale non può essere atomica in quanto contiene sicuramente almeno un connettivo.
+		Il secondo caso, l'unico possibile, è proprio quello richiesto dal lemma.
+	\end{proof}
+		In sostanza, grazie a questo lemma abbiamo garantito l'esistenza di una struttura adatta ad effettuare una \emph{riduzione operazionale} che, intuitivamente, cercherà di eliminare la figura operazionale.
+	\subsection{Riduzione Operazionale}
+		Data una derivazione contraddittoria, per quanto visto il finale contiene sicuramente un raggruppamento del tipo descritto nel lemma \emph{del posto adatto}, ma dobbiamo definire in modo rigoroso una riduzione per la figura operazionale. Identifichiamo con $\cutC$ il taglio associato al raggruppamento ed iniziamo col caso in cui il connettivo terminale della formula principale selezionata sia un $\perogni$, questo dev'essere stato introdotto dalle relative regole in un'inferenza che assume questa forma:
+	\begin{prooftree}
+		\AxiomC{\vdots}
+		\UnaryInfC{$\Gamma_1\seq \Theta_1,\,\gothF(a)$}
+		\LeftLabel{$\perogni\,(dx)$}
+		\UnaryInfC{$\Gamma_1\seq \Theta_1,\,\perogni x \gothF(x)$}
+		\inferencedots	\noLine
+		\UnaryInfC{$\Gamma\seq \Theta,\,\perogni x \gothF(x)$}
+		\AxiomC{\vdots}
+		\UnaryInfC{$\gothF(n),\,\Gamma_2\seq \Theta_2$}
+		\RightLabel{$\perogni\,(sx)$}
+		\UnaryInfC{$\perogni x \gothF(x),\,\Gamma_2\seq \Theta_2$}
+		\inferencedots	\noLine
+		\UnaryInfC{$\perogni x \gothF(x),\,\Delta \seq \Lambda$}
+		\LeftLabel{livello $\rho$}
+		\RightLabel{\quad taglio $\cutC$ \phantom{zzzzzzzzzzz}}
+		\BinaryInfC{$\Gamma,\,\Delta \seq \Theta,\,\Lambda$}
+		\inferencedots
+		\RightLabel{linea di livello}
+		\UnaryInfC{$\Gamma_3 \seq \Theta_3$}
+		\LeftLabel{livello $\sigma<\rho$}
+		\inferencedots
+		\RightLabel{sequente vuoto}
+		\UnaryInfC{$\emptyseq$}
+	\end{prooftree}
+		Dove i puntini indicano delle parti di inferenza omesse in quanto non influenti ed $n$ è un valore \emph{numerico}. Si noti che $\Gamma_3 \seq \Theta_3$ rappresenta il primo sequente incontrato, percorrendo la dimostrazione da $\Gamma,\,\Delta \seq \Theta,\,\Lambda$ al sequente finale, il cui livello $\sigma$ è inferiore a quello del sequente superiore del taglio $\cutC$. Un tale sequente deve esistere in quanto il sequente finale ha livello $0$ mentre il taglio ha livello almeno $1$. Non è da escludere che $\Gamma,\,\Delta \seq \Theta,\,\Lambda$ sia già esso il sequente desiderato, né che $\Gamma_3 \seq \Theta_3$ coincida col sequente vuoto: nessuno dei due casi costituisce un'eccezione alla riduzione operazionale.
+		
+		Per sostituire la regola del $\perogni$ procediamo con un indebolimento e due successive applicazioni della regola del taglio. Ma procediamo con ordine e iniziamo da:
+	\begin{prooftree}
+		\AxiomC{\vdots}
+		\UnaryInfC{$\Gamma_1\seq \Theta_1,\,\gothF(n)$}
+		%\RightLabel{indebolimento}
+		%\doubleLine
+		\UnaryInfC{indebolimento e scambio}
+		\RightLabel{\phantom{zzz}}
+		\UnaryInfC{$\Gamma_1\seq \gothF(n), \, \Theta_1,\,\perogni x \gothF(x)$}
+		\inferencedots	\noLine
+		\UnaryInfC{$\Gamma\seq \gothF(n), \, \Theta,\,\perogni x \gothF(x)$}
+		\AxiomC{\vdots}
+		\UnaryInfC{$\gothF(n),\,\Gamma_2\seq \Theta_2$}
+		\RightLabel{$\perogni\,(sx)$}
+		\UnaryInfC{$\perogni x \gothF(x),\,\Gamma_2\seq \Theta_2$}
+		\inferencedots	\noLine
+		\UnaryInfC{$\perogni x \gothF(x),\,\Delta \seq \Lambda$}
+		\RightLabel{taglio $\cutC$ \phantom{zzzzzzzzzzzz}}
+		\BinaryInfC{$\Gamma,\,\Delta \seq \gothF(n),\,\Theta,\,\Lambda$}
+		\inferencedots
+		\UnaryInfC{$\Gamma_3 \seq \Theta_3,\, \gothF(n)$}
+	\end{prooftree}
+		Questa è la precedente inferenza per $\Gamma_3 \seq \Theta_3$ che, adesso, è ottenuta con un indebolimento ed uno scambio al posto della regola $\perogni\,(dx)$. Al suo sequente finale si è aggiunta la formula $\gothF(n)$ come \emph{residuo} dell'indebolimento introdotto. Inoltre la variabile $a$, che non era più eigenvariable per una figura di inferenza, è stata sostituita con un opportuno numerale $n$. Indichiamo questo nuovo schema con $[A]$. 
+		
+		Costruiamo poi uno schema $[B]$ in cui riproduciamo la stessa inferenza adattandola con le necessarie modifiche affinché inferisca $\gothF(n),\,\Gamma_3 \seq \Theta_3$. Lo schema qui sotto unisce $[A]$ e $[B]$ e con un ulteriore taglio, conclude la dimostrazione allo stesso modo di quella da cui siamo partiti. Questo dovrebbe chiarire quanto detto e concludere così il passo riduttivo.
+	\begin{prooftree}
+		\AxiomC{$[A]$}
+		\noLine
+		\UnaryInfC{\vdots}
+		\UnaryInfC{$\Gamma_3 \seq \Theta_3,\, \gothF(n)$}
+		\AxiomC{$[B]$}
+		\noLine
+		\UnaryInfC{\vdots}
+		\UnaryInfC{$\gothF(n),\,\Gamma_3 \seq \Theta_3$}
+		\RightLabel{nuovo taglio \phantom{zzz}}
+		\BinaryInfC{$\Gamma_3,\,\Gamma_3 \seq \Theta_3,\,\Theta_3$}
+		%\doubleLine
+		\UnaryInfC{contrazioni}
+		\UnaryInfC{$\Gamma_3 \seq \Theta_3$}
+		\inferencedots
+		\UnaryInfC{$\emptyseq$}
+	\end{prooftree}
+		Per tutto quanto si è detto, è evidente la riduzione appena definita lascia invariata la correttezza dell'inferenza.
+		
+		Se l'intento iniziale era quello di eliminare fin da subito l'introduzione del connettivo terminale, in quanto inevitabilmente poi sarebbe comunque stato eliminato per ottenere il sequente vuoto, il tentativo appena descritto ha evidenziato le difficoltà legate a questa idea: che $\perogni x \gothF(x)$ può avere diverse istanze nello schema inferenziale le quali non è conveniente trattare contemporaneamente. 
+		
+		In effetti una semplificazione è comunque stata raggiunta con l'omissione di una figura operazionale al di sopra del taglio e l'introduzione di nuove figure strutturali non influisce negativamente sulla complessità della dimostrazione. Anche perché alcune di queste possono essere nuovamente eliminate come descritto in precedenza. Tuttavia, a prima vista, quello che si vede è una diversa versione della dimostrazione di partenza, a detta nostra almeno lievemente semplificata, che se però poniamo accanto a quella di partenza potrebbe addirittura risultarci più difficile. 
+		
+		Il prossimo passo sarà quindi quello di dimostrare che la maggior difficoltà è solo apparente in quanto l'ordinale della nuova versione risulterà inferiore alla controparte di partenza e il nuovo taglio introdotto avrà un grado inferiore a quello di partenza.
+		
+		Se per ora si accetta quanto affermato, allora si è stabilito un metodo per ridurre le formule il cui connettivo terminale è un $\perogni$. Quando il connettivo terminale è un $\esiste$ il procedimento è identico ma speculare. In generale, la forma dello schema esibito suggerisce che per gli altri connettivi debbano essere apportate solo lievi modifiche.
+		Immaginiamo ad esempio che il connettivo introdotto sia un $\ee$, allora abbiamo la formula $\gothU \ee \gothB$ e immaginiamo lo schema adeguatamente modificato: ogni occorrenza di $\perogni x \gothF(x)$ viene sostituita da $\gothU \ee \gothB$ e le figure operazionali sono quelle relative al nuovo connettivo. Dove prima c'era $\gothF(n)$ ora si scrive $\gothU$ oppure $\gothB$ a seconda delle necessità e si adeguano i tagli alle figure che vengono omesse. Per quanto riguarda il connettivo $\oo$ immaginiamo una simmetria con $\ee$ uguale a quella che incontriamo per trattare $\esiste$ al posto di $\perogni$.
+		Infine, se il connettivo terminale è un $\nn$, le occorrenze di $\gothF(n)$ sono sostituite da $\gothU$ e $\nn \gothU$ prende il posto di $\perogni x \gothF(x)$. 
+		
+		Nella definizione del passo riduttivo per i connettivi diversi dal $\perogni$ mancherebbero da chiarire alcuni ulteriori dettagli che, tuttavia, non sono interessanti ai fini della nostra trattazione.
+
+	\subsection{Rimarchi Finali}
+		Riassumendo: abbiamo eliminato tutte le occorrenze dello schema di induzione completa nel finale della dimostrazione tramite un certo numero di figure differenti, abbiamo poi eliminato ricorsivamente tutte le occorrenze della figura dell'indebolimento e dei sequenti base logici e, infine, grazie al lemma del posto adatto, abbiamo ridotto una figura operazionale, anche se purtroppo non in maniera ottimale, e questo ha anche ampliato il finale della dimostrazione.
+		
+		Ciò che manca alla conclusione è verificare che effettivamente l'ordinale di una dimostrazione contraddittoria decresca in accordo con le riduzioni definite. Osserviamo, innanzitutto, che la sostituzione delle variabili libere ridondanti non ha alcun effetto sull'ordinale assegnato. Ed ora:
+	\begin{teo}
+		Ogni dimostrazione $\proofsym$ del sequente vuoto può essere ridotta ad una dimostrazione $\redproof$ con $\redordof{D}<\ordof{D}$. 
+	\end{teo}
+	\begin{proof}
+		Vogliamo mostrare che una \CJ{riduzione}, quando effettuabile, diminuisce $\ordof{D}$. Qualora invece non vi siano \CJ{figure} nel finale, mostreremo che una riduzione operazionale sortisce lo stesso effetto su $\proofsym$. Questo è sufficiente a dimostrare il teorema poiché, come visto, una delle due riduzioni è sempre possibile.
+		
+		$\bm{CJ-}\,$\textbf{Riduzione}) Prima della riduzione, al sequente superiore della figura considerata è associato l'ordinale $\omega^{\alpha_1} + \ldots + \omega^{\alpha_{\mu}}$ e alla linea di inferenza $\omega^{\alpha_1+1}$. Quest'ultimo è anche l'ordinale del sequente inferiore della figura, infatti i livelli non possono essere diversi perché il taglio associato al raggruppamento cui $\gothF(n)$ appartiene ha per definizione lo stesso grado della \CJ{figura}, ma è situato più in basso nella dimostrazione. Esaminiamo ora lo schema ridotto quando $n>0$: ogni sequente superiore delle figure che vi compaiono ricevono ovviamente lo stesso ordinale $\omega^{\alpha_1} + \ldots + \omega^{\alpha_{\mu}}$, inoltre il livello dei sequenti non è cambiato, infatti il grado del nuovi tagli introdotti è lo stesso della \CJ{figura} sostituita. Quindi l'ordinale associato al sequente finale dello schema ridotto è uguale ad una somma di ordinali che comincia con $\omega^{\alpha_1} + \ldots$ che, in ogni caso, è minore di $\omega^{\alpha_1+1}$. Il resto della dimostrazione a seguire è invariato, così come tutti i livelli sottostanti, quindi $\ordof{D}$ è diminuito. Se invece $n=0$ allora il sequente $\gothF(0),\, \Gamma \seq \Theta,\, \gothF(0)$ riceve l'ordinale $1$ poiché deriva da un sequente base logico solo tramite indebolimenti e scambi. Nella derivazione di partenza tuttavia il suo ordinale era almeno $\omega^1$ quindi anche in questo caso si ha una diminuzione di $\ordof{D}$.
+		
+		\emph{\textbf{Osservazioni Preparatorie}}) Prima di considerare la riduzione operazionale in sé, è bene notare che ciò che lo precede non può causare un incremento dell'ordinale della dimostrazione.
+		Questo è vero in particolare se l'aggiunta o l'omissione di formule deriva da una figura debole. Nell'eliminazione di un taglio, invece, sorgono alcune problematiche. Questa operazione cancella uno dei due sequenti superiori assieme a tutto quello che vi sta sopra, in più potrebbe causare una riduzione, in misura minore o maggiore, di tutti i livelli dei sequenti soprastanti, non solo all'interno del finale. Se si tralascia momentaneamente questo cambiamento, la decrescita dell'ordinale è intuitiva in quanto si sostituisce un solo ordinale ad una somma dello stesso più un altro non nullo.
+		Supponiamo di poter \emph{correggere} i livelli nel modo che preferiamo: iniziamo dalla derivazione originale, omettiamo il taglio e lasciamo i livelli invariati, così da poterli gradualmente adattare in accordo con la definizione di livello. Con il seguente schema per i livelli in mente:
+		\begin{prooftree}
+			\AxiomC{\vdots \qquad \; \vdots}
+			\noLine
+			\UnaryInfC{livello $\rho$}
+			\LeftLabel{taglio $\cutC_1$}
+			\UnaryInfC{grado: $\sigma<\rho$}
+			\noLine
+			\UnaryInfC{$\qquad \ddots$}
+			\noLine
+			\AxiomC{\vdots \qquad \; \vdots}
+			\noLine
+			\UnaryInfC{livello $\pi$}
+			\RightLabel{taglio $\cutC_2$ \phantom{zzzzzz}}
+			\UnaryInfC{grado: $\pi>\rho$}
+			\noLine
+			\UnaryInfC{$\udots \qquad$}
+			\noLine
+			\BinaryInfC{livello $\rho$}
+			\LeftLabel{taglio $\cutC_3$}
+			\UnaryInfC{grado: $\rho$}
+			\longInfdots{livello $\varphi<\rho$}
+		\end{prooftree}
+		procediamo individuando, dal basso verso l'alto, \emph{una} figura il cui sequente infeiore ha un livello più basso rispetto al sequente superiore e diminuiamo il livello di quest'ultimo di $1$. Si noti che se nello schema precedente il taglio eliminato è $\cutC_1$ nulla cambia, se invece è $\cutC_2$ allora i livelli sopra di lui risulteranno errati e la prima figura individuata sarà proprio quella che sostituisce $\cutC_2$. Iterando, è facile vedere che questa procedura corregge tutti gli errori introdotti. Supponiamo che gli ordinali associati ai sequenti superiori siano $\alpha$ e $\beta$ (si usi solo $\alpha$ nel caso di un unico sequente superiore), allora dopo il cambiamento di livello assumeranno la forma $\omega^\alpha$ e $\omega^\beta$ a meno che si tratti di un sequenti iniziali, in tal caso i loro valori $1$ restano invariati. Prima del cambiamento le linee di inferenza avevano come ordinale, a seconda della figura, uno tra: $\alpha$, $\ordsum{\alpha}{\beta}$, max$(\alpha+1,\,\beta+1)$ oppure $\omega^{\alpha_1+1}$ (nel caso di una $\CJ{inferenza}$ con $\alpha=\omega^{\alpha_1}+\ldots$). Ora hanno $\omega^\alpha$, $\ordsum{\omega^\alpha}{\omega^\beta}$, max$(\omega^\alpha+1,\,\omega^\beta+1)$ oppure $\omega^{\alpha_1+1}$. Per quanto riguarda il sequente inferiore, se prima la differenza di livelli era $1$ adesso è nulla, perciò i loro ordinali cambieranno rispettivamente da $\omega^\alpha$ a $\omega^\alpha$, da $\omega^{\ordsum{\alpha}{\beta}}$ a $\ordsum{\omega^\alpha}{\omega^\beta}$, da max$(\omega^{\alpha+1},\,\omega^{\beta+1})$ a max$(\omega^\alpha+1,\,\omega^\beta+1)$ e da $\omega^{\omega^{\alpha_1+1}}$ a $\omega^{\omega^{\alpha_1}+\ldots+1}$. In ogni caso l'ordinale è diminuito. Se la differenza di livelli era maggiore di $1$ poco cambia rispetto al caso analizzato, si aggiunga soltanto un opportuno numero di esponenziazioni per $\omega$. Poiché un singolo cambio di livello fa diminuire l'ordinale allora a maggior ragione non aumenterà iterando questo procedimento.
+
+		\emph{\textbf{Riduzione Operazionale}}) Siamo interessati a dimostrare la tesi nel caso della riduzione per il connettivo $\perogni$, per gli altri la dimostrazione è sostanzialmente identica.
+		Nella nuova derivazione, entrambi gli ordinali delle due linee di inferenza sopra a $\Gamma_3 \seq \gothF(n),\,\Theta_3$ e $\Gamma_3,\,\gothF(n) \seq \Theta_3$, siano essi $\alpha_A$ e $\alpha_B$ ($splg:$ $\alpha_A \ge \alpha_B$), sono minori dell'ordinale $\alpha$ associato alla \emph{linea di livello} nella vecchia derivazione. Quindi $\alpha>\alpha_A\ge\alpha_B$. Questo è vero perché le nuove parti di derivazione sopra alle linee citate sono identiche alla parte originale, livelli compresi, eccetto per una figura operazionale che nelle nuove parti è stata sostituita da figure strutturali che non influiscono sull'ordinale, a differenza di quella operazionale. Inoltre $\Gamma_3 \seq \Theta_3$ ha livello $\sigma<\rho$ sia prima che dopo la riduzione. Anche $\Gamma_3,\,\Gamma_3 \seq \Theta_3,\,\Theta_3$ ha livello $\sigma$. Il livello $\tau$ del sequente superiore del \emph{nuovo taglio} è tale che $\rho>\tau \ge \sigma$: infatti è ovvio che $\tau \ge \sigma$, mentre $\rho>\tau$ si giustifica perché, per definizione di livello, $\tau=$ max$[\sigma,$ deg$(\gothF(n))]$ e se $\tau=\sigma$ allora inevitabilmente $\rho>\tau$, mentre se $\tau=$ deg$(\gothF(n))$ allora la disuguaglianza desiderata segue dal fatto che deg$(\gothF(n))<$ deg$(\perogni x\gothF(x))$ e $\rho\ge$ deg$(\perogni x\gothF(x))$.
+		Supponiamo che le differenze nella disuguaglianza $\rho>\tau \ge \sigma$ siano \emph{minimali}, i.e. $\rho=\tau+1$ e $\tau=\sigma$. Il sequente $\Gamma_3 \seq \Theta_3$ nella vecchia derivazione riceve l'ordinale $\omega^\alpha$. Nella nuova derivazione i due sequenti superiori del nuovo taglio ricevono gli ordinali $\omega^{\alpha_A}$ e $\omega^{\alpha_B}$, quindi al sequente $\Gamma_3 \seq \Theta_3$ adesso si assegnerà $\omega^{\alpha_A}+\omega^{\alpha_B}$ che è strettamente minore di $\omega^\alpha$. Di conseguenza, se le differenze di livello sono minimali allora abbiamo finito. Se così non fosse la disuguaglianza $\omega^\alpha>\omega^{\alpha_A}+\omega^{\alpha_B}$ verrebbe sostituita da:
+		\input{Mainmatter/equazione1}
+		senza quindi cambiare in modo sostanziale il ragionamento fatto e la correttezza di quest'ultima disuguaglianza dovrebbe risultare altrettanto intuitiva.
+		Si noti che, come già visto, la diminuzione dell'ordinale in un certo punto di una derivazione si propaga sul resto della derivazione sottostante e quindi su $\ordof{D}$. Questo conclude la dimostrazione.
+	\end{proof}
+		Abbiamo supposto l'esistenza di una derivazione contraddittoria e mostrato che questa non può essere semplice, quindi esiste certamente al suo interno un luogo adatto ad una riduzione. Tuttavia, a seguito della riduzione, siamo nuovamente di fronte ad una derivazione contraddittoria e, come prima, questa non può essere semplice e deve essere per forza di nuovo riducibile. L'assurdo sorge proprio dal fatto che se una derivazione contraddittoria è riducibile, e lo è per forza, allora lo sarà infinite volte, ma questo dà luogo ad una sequenza di ordinali strettamente decrescente e infinita, cosa che contraddice il Teorema di Accessibilità. Abbiamo quindi dimostrato che:
+	\begin{description}
+		\item[Teorema](di Consistenza)\textbf{.}\ \ \textit{L'Aritmetica di Peano è consistente.}
+	\end{description}

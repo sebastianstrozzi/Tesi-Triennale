@@ -1,0 +1,44 @@
+\documentclass[a4paper, 12pt, openright, twoside]{book}
+
+\title{La Consistenza dell'Aritmetica di Peano}
+\author{Sebastian Strozzi}
+
+\input{Comandi/comandi.tex}								
+
+\begin{document}
+	\frontmatter
+		
+		\selectlanguage{italian}
+		\input{Frontmatter/titlepage}
+%		\input{Frontmatter/ringraziamenti.tex}				% Ringraziamenti
+		\input{Frontmatter/intro}
+	
+		\begingroup											% Alcuni comandi iniziali
+		\makeatletter
+		\let\ps@plain\ps@empty
+		\makeatother
+		\tableofcontents
+		\clearpage
+		\endgroup
+	
+	\mainmatter
+		
+		%\input{Frontmatter/abstract}
+		\setcounter{chapter}{0}
+		\input{Mainmatter/chapter1}							% Consistenza di Pa
+		%\input{Mainmatter/chapter2}							% Incompletezza
+		\begin{comment}
+		\begin{appendices}
+			\include{Mainmatter/Appendice.tex}
+		\end{appendices}
+		\end{comment}
+		%\afterpage{\blankpage}
+		%\afterpage{\blankpage}
+	
+	\backmatter
+		
+		%\input{Backmatter/notazioni.tex}					% Chiarimenti notazioni
+		\cleardoublepage
+		\input{Backmatter/bibliografia.tex}					% Bibliografia (manuale)
+		
+\end{document}

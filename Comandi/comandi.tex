@@ -1,0 +1,165 @@
+% Pacchetti
+	\usepackage[T1]{fontenc}
+	\usepackage[utf8]{inputenc}
+	\usepackage{setspace}					% Richiesto per frontespizio
+	\usepackage[italian, english]{babel}
+	\usepackage{amsmath}
+	\usepackage{amssymb}
+	\newcommand\hmmax{0} 					% default 3
+	\newcommand\bmmax{0} 					% default 4
+	\usepackage{bm}
+	\usepackage{mathrsfs}
+	\usepackage{amsthm}
+	\usepackage{bussproofs}					% figure di inferenza
+	\usepackage{bussproofs-extra}
+	\usepackage{bm}							% Simboli in bold
+	\usepackage{comment} 		            % Usa \begin{comment} \end{comment}
+	\usepackage{braket} 					% Parentesi
+	\usepackage{MnSymbol}
+	\usepackage{hyperref} 					% Riferimenti
+	\usepackage[capitalise]{cleveref} 		% Riferimenti
+	\usepackage{emptypage} 					% Migliora pagine vuote
+	\usepackage{enumitem} 					% Liste
+	\usepackage{fancyhdr} 					% Modifica stile di pagina
+	\usepackage{float}						% ????
+	\usepackage
+	[a4paper,
+	width=160mm,
+	top=25mm,
+	bottom=25mm,
+	bindingoffset=6mm
+	]{geometry} 							%Margini
+	\usepackage{graphicx}					% Immagini
+	\usepackage{caption}
+	\usepackage{subfig}						% Immagini
+	\usepackage{mathtools}					
+	\usepackage{nicefrac}					% Frazioni carine
+	\usepackage{stmaryrd}					% ????
+	\usepackage{tikz-cd} 					% ????
+	\usepackage{titlesec}       			% Modifica il formato dei titoli
+	\usepackage{verbatim}					
+	\usepackage[swapnames]{frontespizio}	% Non credo di starlo usando
+	\usepackage{lipsum} 					% ????
+	\usepackage{afterpage}
+	
+	\newcommand\blankpage{%
+		\null
+		\thispagestyle{empty}%
+		\addtocounter{page}{-1}%
+		\newpage}
+
+
+% Environment Abstract che non c'è nella classe Book
+	\newenvironment{abstract}{
+		\cleardoublepage \null \vfill 
+		\begin{center}
+			\bfseries\abstractname
+		\end{center}
+	}
+	{\vfill\null} 						
+
+
+% Usa fonts più piccoli per le didascalie
+	\captionsetup{font=small, labelfont={sf, bf}} 
+
+
+% Formattazione titoli
+	\titleformat{\chapter}
+	{\Huge \normalfont \bfseries}{\thechapter}{1em}{}
+
+
+% Stile di Pagina
+	\pagestyle{fancy}
+	\fancyhf{}
+	\fancyhead[LE]{\bfseries \leftmark}
+	\fancyhead[RO]{\bfseries \rightmark}
+	\fancyhead[RE, LO]{\bfseries \thepage}
+
+	\setlength{\headheight}{14.5pt}
+
+	\renewcommand\chaptermark[1]{\markboth{\thechapter.\space#1}{}} 
+	\renewcommand\sectionmark[1]{\markright{\thesection.\ #1}} 
+
+
+% Usa stile di pagina vuota invece di plain, rimuove la numerazione dalle pagine dei capitoli
+	\makeatletter
+	\let\ps@plain\ps@empty
+	\makeatother
+
+
+% Impostazioni dei colori per i riferimenti
+	\hypersetup{ 
+		colorlinks=false, 
+		citecolor=Violet,
+		linkcolor=Red,
+		urlcolor=Blue
+	}
+
+
+% Comandi Generici
+	\def\Egrave{\MakeUppercase{è}\ }									% E accentata
+	\def\apertevirg{‘‘}
+	\def\chiusevirg{''}
+	\newcommand{\virg}[1]{\apertevirg #1\chiusevirg}
+	\def\Godel{G\"odel}
+	\def\N{\ensuremath{\mathbb{N}}}										% simbolo Naturali
+	\def\defeq{\ensuremath{\stackrel{\text{def}}{=}}}					% uguale per def
+	\def\nn{\ensuremath{\neg}}											% not
+	\def\ee{\ensuremath{\land}}											% and
+	\def\oo{\ensuremath{\lor}}											% or
+%	\def\allora{\ensuremath{\supset}}									% implicazione 1
+	\def\allora{\ensuremath{\Rightarrow}}								% implicazione 2
+	\def\perogni{\ensuremath{\forall}}									% per ogni
+	\def\esiste{\ensuremath{\exists}}									% esiste
+	
+	% Lettere gotiche
+	\def\gothD{\ensuremath{\mathfrak{D}}}
+	\def\gothU{\ensuremath{\mathfrak{U}}}
+	\def\gothB{\ensuremath{\mathfrak{B}}}
+	\def\gothF{\ensuremath{\mathfrak{F}}}
+	
+
+
+% Comandi per il cap.1
+	\def\seq{\ensuremath{\bm{\rightarrow}}}								% simbolo sequente
+	\def\emptyseq{\ensuremath{\  \seq \; }}								% sequente vuoto
+	\newcommand{\CJ}[1]{\ensuremath{\bm{CJ}-#1}}						% CJ-"qualcosa"	
+	\newcommand{\Sordinale}[1]{\ensuremath{\mathfrak{S}_{#1}}}			% insiemi ordinali
+	\newcommand{\tetrazione}[2]{\ensuremath{#1\uparrow\uparrow#2}}		% tetrazione
+	\newcommand{\ordsum}[2]{\ensuremath{#1\,\texttt{\#}\,#2}}			% somma ordinali
+	\newcommand{\ordof}[1]{\ensuremath{\sigma(\mathcal{#1})}}			% o(dimostrazione)
+	\def\proofsym{\ensuremath{\mathcal{D}}}								% simbolo dim
+	\def\redproof{\ensuremath{\mathcal{D\,'}}}							% dim ridotta
+	\newcommand{\redordof}[1]{\ensuremath{\sigma(\mathcal{#1\,'})}}		% o(D')
+	\def\cutC{\ensuremath{\mathcal{C}}}									% lettera Cut
+	\def\teoriaS{\ensuremath{\mathscr{S}}}
+	
+	% puntini inferenza
+	\def\goon{\ensuremath{\ddots\,\vdots\,\udots}}
+	\def\inferencedots{
+		\noLine
+		\UnaryInfC{\goon}
+		\def\extraVskip{0pt}
+		\noLine
+		\UnaryInfC{\vdots}
+		\def\extraVskip{2pt}
+		}
+	\newcommand{\longInfdots}[1]{
+		\noLine
+		\UnaryInfC{\vdots}
+		\RightLabel{\quad \; #1}
+		\def\extraVskip{0pt}
+		\noLine
+		\UnaryInfC{\vdots}
+		}
+
+
+% Stile dei Teoremi
+	\theoremstyle{plain}
+	\newtheorem{teo}{Teorema}[section]									% prima [chapter]
+	\newtheorem{prop}[teo]{Proposizione}
+	\newtheorem{lemma}[teo]{Lemma}
+	\newtheorem{corollary}{Corollario}[teo]
+	\theoremstyle{definition}
+	\newtheorem{defin}[teo]{Definizione}
+	\newtheorem{eg}[teo]{Esempio}

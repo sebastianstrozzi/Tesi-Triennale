@@ -1,0 +1,46 @@
+\subsubsection{}
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+\subsection*{}
+	%\section*{Introduzione}
+	\begin{center}
+		\Large{\textbf{Introduzione}}
+	\end{center} \smallskip
+		
+		Esiste, a mio avviso, un malinconico parallelismo tra la storia della matematica ed il nostro percorso di studi: entrambi iniziano in tenera età con una necessità pratica e, da lì, si sviluppano districandosi tra problemi sempre più complicati e strumenti via via più raffinati. 
+		Man mano che si prosegue, la voglia di giustificare le proprie affermazioni si fa sempre più viva finché, infine, diventa necessità. 
+		Capita poi, ad un certo punto, di andare così a fondo nella ricerca di una giustificazione da arrivare a intuire il soggettivo nell'oggettivo. Ma quando si raschiano i fondamenti di ciò di cui ci si è sempre occupati, diventa lecito chiedersi se questi ultimi siano così solidi come si è creduto fino a quel punto.
+		
+		Nel 1936 Gerhard Gentzen pubblicò una rivoluzionaria dimostrazione, quella della Consistenza dell'Aritmetica di Peano, aprendo definitivamente le strade per una nuova disciplina chiamata Teoria della Dimostrazione.
+		La prima versione del suo articolo, quella del 1936, era per certi versi ancora acerba, pur contenendo già le idee fondamentali. Una versione più chiara e rifinita venne pubblicata nel 1938 ed è presente, assieme alla prima, nei suoi \virg{\textit{Collected Papers}}: è questa seconda su cui ci baseremo. Lo scopo di questa tesi è, infatti, di ripercorrere i passi di quella dimostrazione a partire dalle sue fondamenta logiche e matematiche. 
+		
+		Durante la scrittura di questo elaborato si sono prese alcune deviazioni rispetto al percorso della fonte principale, inglobando nuove chiavi di lettura per i concetti originali ed alcune rielaborazioni personali. Un esempio è il teorema principale della sezione $2.1$: l'articolo del 1938 adotta un metodo inusuale per rappresentare gli ordinali e questa scelta pare ragionevole visto che, così facendo, essi assumono una struttura simile a quella con cui formalizziamo le dimostrazioni; tuttavia per la dimostrazione di una loro proprietà fondamentale questo articolo rimanda alla versione del 1936, in cui si è adottata l'usuale rappresentazione insiemistica. Ho colto l'opportunità per presentare una mia versione della dimostrazione con la speranza che l'esposizione ne traesse, in qualche modo, un valore aggiuntivo.
+		
+		Il primo capitolo si sviluppa attorno alla formalizzazione dell'Aritmetica di Peano, sia nei suoi aspetti matematici, sia nelle regole logiche che governano le deduzioni. Questi costituiscono sia gli strumenti imprescindibili per affrontare la dimostrazione vera e propria sia un argomento di notevole interesse espositivo.
+		Il secondo capitolo, più tecnico, contiene i dettagli della dimostrazione. Esso si apre delineando uno schema del percorso che si intenderà seguire. A differenza dell'articolo originario, che posticipava la sezione sugli ordinali, qui si è preferito introdurli fin da subito con la speranza che fornissero un'ulteriore linea guida per cogliere il significato e la bellezza delle idee della dimostrazione di Gentzen.
+		
+		Quello che dovrebbe restare al lettore è, a mio avviso, la bellezza di un risultato matematico che discute \emph{sulla} matematica e che pone le basi per svariate branche di studio: dai fondamenti fino alla teoria dei linguaggi informatici, alla \textit{proof mining} e alla deduzione automatica.
+		\newpage
+		\thispagestyle{empty}
+		\phantom{x}
+		\vspace{3,8cm}
+	\begin{flushright}
+		\textit{Alla mia Famiglia, \\ per avermi sempre supportato.} \\ \phantom{x} \\
+		\textit{Al mio Relatore, prof. Pablo Spiga, \\ per avermi mostrato la bellezza nell'Algebra, \\ per avermi concesso totale libertà \\ e per avermi aperto gli occhi.} \\ \phantom{x} \\
+		\textit{Ai miei più cari Amici, \\ per essere i miei più cari amici.} \\ \phantom{x} \\
+		\textit{Ai miei Studenti e Studentesse, \\ che mi hanno insegnato più di quanto io abbia insegnato loro, \\ grazie di cuore.}
+	\end{flushright} \vspace{3cm}
+	%\begin{center}
+	%	\Large{\textbf{Ringraziamenti}}
+	%\end{center} \smallskip
+	%	Desidero ringraziare il mio relatore, in primo luogo per avermi lasciato la libertà di indagare un argomento che amo, ma soprattutto per i preziosi consigli e per avermi aperto gli occhi su bla bla bla
+	%	\hfill
+\begin{comment}
+	L'incompletezza di una teoria assiomatica in grado di formalizzare i numeri naturali è data, in primo luogo, dalla sua incapacità di provare dall'interno la sua stessa coerenza. Tuttavia questa affermazione è ricca di punti di domanda: cosa vorrebbe dire provare la consistenza di un sistema di assiomi dal suo interno? O, più in generale: uscendo dalla teoria in questione è possibile dimostrarne la coerenza? Questo è il primo capitolo. \\
+	
+	A fronte dell'obiezione di Feferman (?) \ldots
+	Il resto della tesi si apre sul possibile dubbio che gli esempi di teoremi indimostrabili all'interno di una teoria si riducano a casi patologici come quello appena descritto e che quindi, nella quotidianità di un matematico, l'incompletezza sia una condizione innocua. 
+	Le cose però cambiano quando si considerano problemi più concreti come l'indimostrabilità in PA del Teorema di Goodstein o di una versione rafforzata del Teorema di Ramsey. Questi, sebbene dimostrabili in ZF, sono indecidibili in PA. 
+	Ancora una volta, uno potrebbe obiettare che se in ZF sono dimostrabili, il problema non sussiste, e \emph{forse} davvero è così. Ma quali grandi problemi aperti della matematica necessiteranno di visitare nuovi sistemi di assiomi non ancora definiti per essere risolti? 
+\end{comment}
