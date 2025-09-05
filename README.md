@@ -40,4 +40,4 @@ Questo repository contiene l'intero progetto LaTeX utilizzato per la stesura del
 
 ---
 
-*Questo lavoro è distribuito con Licenza DA SPECIFICARE*
+*Questo lavoro è distribuito con la licenza [Creative Commons Attribuzione - Non commerciale - Non opere derivate 4.0 Internazionale](LICENSE).*
