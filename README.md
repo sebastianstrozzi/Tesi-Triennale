@@ -2,6 +2,8 @@
 
 Questa tesi di laurea triennale ripercorre la celebre dimostrazione di Gerhard Gentzen sulla consistenza dell'Aritmetica di Peano. Partendo da una formalizzazione della teoria tramite il Calcolo dei Sequenti, il lavoro esplora il nucleo della prova. Dimostrare la consistenza, in questa ottica, equivale a mostrare l'impossibilità di derivare una contraddizione (il sequente vuoto) a partire dagli assiomi dell'aritmetica, usando unicamente le regole di inferenza permesse. L'argomentazione procede per assurdo, basandosi sull'induzione transfinita: a ogni dimostrazione viene associato un ordinale e si mostra come un'ipotetica prova della contraddizione possa essere ridotta indefinitamente, generando una sequenza infinita e decrescente di ordinali. Questo contraddice il Teorema di Accessibilità, la cui dimostrazione è qui presentata in una rielaborazione personale, garantendo così la consistenza del sistema.
 
+Questo approfondimento, condotto partendo da zero e in completa autonomia su un argomento non previsto dal piano di studi, è stato reso possibile dalla fiducia e dal prezioso supporto metodologico del mio relatore.
+
 
 ## Struttura del Repository
 
